@@ -7,6 +7,7 @@
 
 #vim the one and only
 export EDITOR=/usr/bin/vim
+export ADMINREPO=/root/adminrepo
 # colorful manpages
 export GREP_OPTIONS='--color=auto'
 #export GREP_COLOR='1;32'
@@ -31,12 +32,14 @@ HISTSIZE=10000000
 HISTIGNORE=" *:&:hg*:history*:ls:ll:la:lla:l:clear:bg:fg"
 HISTTIMEFORMAT='%F %T '
 
-export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
 #append to the history file, don't overwrite it
 shopt -s histappend
 
 #Write out history after each command
 PROMPT_COMMAND='history -a'
+
+#vim as manpager
+export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -64,12 +67,26 @@ parse_git_branch() {
 	echo "($(git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* //')$DIRTY)"
 }
 
+#parse_svn_revision() {
+	#local DIRTY 
+	#REV=$(svn info 2>/dev/null | grep Revision | sed -e 's/Revision: //')
+	#echo "$(svn info \| grep Revision)" # \| sed -e 's/Revision: //')"
+	#[ "$REV" ] || echo " $REV" && return "1234"
+	#[ "$(svn st)" ] && DIRTY=' *'
+	#echo "(r$REV$DIRTY)"
+#}
 parse_svn_revision() {
 	local REV=$(svnversion 2>/dev/null)
 	#[ -d ".svn" ] || return
 	[ $? -eq 0 ] || return
 	[ "$REV" == 'exportiert' ] && return
 	echo " ($REV)"
+	#echo "$REV" | grep : &> /dev/null
+	#if [ $? == "0" ] ; then
+		#echo "\\[\\033[01;32m\\]($REV)\\[\\033[00m\\]"
+	#else
+		#echo "REV"
+	#fi
 }
 
 scm_ps1() {
@@ -88,6 +105,16 @@ else
 	ROOT=""
 fi
 
+#I ADDED THIS TO SHORTEN PWD
+_PS1 ()
+{
+	local PRE= NAME="$1" LENGTH="$2";
+	[[ "$NAME" != "${NAME#$HOME/}" || -z "${NAME#$HOME}" ]] &&
+	PRE+='~' NAME="${NAME#$HOME}" LENGTH=$[LENGTH-1];
+	((${#NAME}>$LENGTH)) && NAME="/...${NAME:$[${#NAME}-LENGTH+4]}";
+	echo "$PRE$NAME"
+}
+
 #Command Number
 CMDNR="\!"
 #User
@@ -104,10 +131,11 @@ TTY="\l"
 #Return code
 RETURN="\$(ret=\$?; if [[ \$ret = 0 ]];then echo \"\[\033[01;32m\]\$ret\";else echo \"\[\033[01;31m\]\$ret\";fi)\[\033[00m\]"
 
+
 #the actual prompt with a colorised return code
 #PS1="$CMDNR $U@$H:$DIR $RETURN"'$(scm_ps1)'" \$ " #schnell
 #PS1="$CMDNR $U@$H:$DIR $RETURN"'$(parse_svn_revision)'" \$ " #langsam
-PS1="$U@$H - $DATE - tty$TTY - $CMDNR "'$(scm_ps1) '"$ROOT \n$DIR $RETURN \$ " #schnell
+PS1="$U@$H - $DATE - tty$TTY - $CMDNR "'$(scm_ps1) '"$ROOT \n\[\033[01;34m\]"'$(_PS1 "$PWD" 50)'"\[\033[00m\] $RETURN \$ " #schnell
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
@@ -168,6 +196,7 @@ alias cmus="$HOME/scripts/cmusbackup.sh && /usr/bin/cmus"
 alias sx="screen -x"
 alias webserver="python -m SimpleHTTPServer 8080"
 alias chmox="chmod +x"
+
 #colourise
 if [ -e /usr/bin/grc ]
 then
@@ -244,25 +273,25 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-#start ssh-agent
+# Set up ssh-agent
 SSH_ENV="$HOME/.ssh/environment"
 
 function start_agent {
-	echo "Initializing new SSH agent..."
-	/usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
-	echo succeeded
-	chmod 600 "${SSH_ENV}"
-	. "${SSH_ENV}" > /dev/null
-	/usr/bin/ssh-add;
+    echo "Initializing new SSH agent..."
+    /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
+    echo succeeded
+    chmod 600 "${SSH_ENV}"
+    . "${SSH_ENV}" > /dev/null
+    /usr/bin/ssh-add;
 }
 
 # Source SSH settings, if applicable
 if [ -f "${SSH_ENV}" ]; then
-	. "${SSH_ENV}" > /dev/null
-	#ps ${SSH_AGENT_PID} doesn't work under cygwin
-	ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
-	start_agent;
-}
+    . "${SSH_ENV}" > /dev/null
+    #ps ${SSH_AGENT_PID} doesn't work under cywgin
+    ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+        start_agent;
+    }
 else
-	start_agent;
+    start_agent;
 fi
