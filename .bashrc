@@ -219,6 +219,20 @@ then
 	alias top='htop'
 fi
 
+function update_dotfiles() {
+	if [ "$(which git)" ]; then
+		if [ ! -e ~/dotfiles/ ] ; then
+			git clone git@github.com:bastiandg/dotfiles.git ~/dotfiles
+		else
+			(cd ~/dotfiles/ && git pull)
+		fi
+		cp -r ~/dotfiles/.bashrc ~/.bashrc
+		rm -rf ~/.vim/ ~/.vim
+	else
+		echo "git is not installed"
+	fi
+}
+
 function bak() {
 	cp "$1" "$1.bak$(date "+%Y%m%d")"
 }
