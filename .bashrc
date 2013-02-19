@@ -227,7 +227,9 @@ function update_dotfiles() {
 			(cd ~/dotfiles/ && git pull)
 		fi
 		cp -r ~/dotfiles/.bashrc ~/.bashrc
-		rm -rf ~/.vim/ ~/.vim
+		rm -rf ~/.vim/ ~/.vimrc
+		cp -r ~/dotfiles/.vimrc ~/.vimrc
+		cp -r ~/dotfiles/.vim ~/.vim
 	else
 		echo "git is not installed"
 	fi

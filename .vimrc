@@ -158,9 +158,6 @@ nnoremap <S-Tab> <<
 vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
 nnoremap U <C-r>
-inoremap { {<cr>}<c-o>O
-inoremap [ []<c-o>i
-inoremap ( ()<c-o>i
 
 :command WQ wq
 :command Wq wq
