@@ -27,15 +27,15 @@ endif
 
 
 function! Preserve(command)
-  " Preparation: save last search, and cursor position.
-  let _s=@/
-  let l = line(".")
-  let c = col(".")
-  " Do the business:
-  execute a:command
-  " Clean up: restore previous search history, and cursor position
-  let @/=_s
-  call cursor(l, c)
+	" Preparation: save last search, and cursor position.
+	let _s=@/
+	let l = line(".")
+	let c = col(".")
+	" Do the business:
+	execute a:command
+	" Clean up: restore previous search history, and cursor position
+	let @/=_s
+	call cursor(l, c)
 endfunction
 
 set cole=2
@@ -91,19 +91,19 @@ au Syntax * RainbowParenthesesLoadBraces
 set nocompatible " explicitly get out of vi-compatible mode
 inoremap <c-o> <c-x><c-o>
 inoremap <expr> <C-Space> pumvisible() \|\| &omnifunc == '' ?
-\ "\<lt>C-n>" :
-\ "\<lt>C-x>\<lt>C-o><c-r>=pumvisible() ?" .
-\ "\"\\<lt>c-n>\\<lt>c-p>\\<lt>c-n>\" :" .
-\ "\" \\<lt>bs>\\<lt>C-n>\"\<CR>"
+			\ "\<lt>C-n>" :
+			\ "\<lt>C-x>\<lt>C-o><c-r>=pumvisible() ?" .
+			\ "\"\\<lt>c-n>\\<lt>c-p>\\<lt>c-n>\" :" .
+			\ "\" \\<lt>bs>\\<lt>C-n>\"\<CR>"
 imap <C-@> <C-Space>
 "inoremap <c-space> <c-x><c-o>
 inoremap <silent><Down> <C-r>=pumvisible()?"\<lt>C-n>":"\<lt>Down>"<CR>
 inoremap <silent><Up> <C-r>=pumvisible()?"\<lt>C-p>":"\<lt>Up>"<CR>
 
 autocmd BufReadPost *
-\ if line("'\"") > 0 && line("'\"") <= line("$") |
-\   exe "normal! g`\"" |
-\ endif
+			\ if line("'\"") > 0 && line("'\"") <= line("$") |
+			\   exe "normal! g`\"" |
+			\ endif
 
 "nnoremap <up> gk
 "nnoremap <down> gj
@@ -151,6 +151,7 @@ nnoremap <silent> <F3> :YRShow<cr>
 inoremap <silent> <F3> <ESC>:YRShow<cr>
 nmap <F4> :e<CR>GL:sleep 1<CR><F4>
 nmap <F5> :call Preserve("%s/\\s\\+$//e")<CR>
+nmap <F6> :call Preserve("normal gg=G")<CR>
 "run current script
 map <F9> <ESC>:w<CR>:!%<CR>
 nnoremap <Tab> >>
@@ -204,22 +205,22 @@ hi StatColor guibg=#95e454 guifg=black ctermbg=lightgreen ctermfg=black
 hi Modified guibg=orange guifg=black ctermbg=lightred ctermfg=black
 
 function! MyStatusLine(mode)
-    let statusline=""
-    if a:mode == 'Enter'
-        let statusline.="%#StatColor#"
-    endif
-    let statusline.="\(%n\)\ %f\ "
-    if a:mode == 'Enter'
-        let statusline.="%*"
-    endif
-    let statusline.="%#Modified#%m"
-    if a:mode == 'Leave'
-        let statusline.="%*%r"
-    elseif a:mode == 'Enter'
-        let statusline.="%r%*"
-    endif
-    let statusline .= "[%L][%{&ff}]%y[%p%%][%04l,%04v]"
-    return statusline
+	let statusline=""
+	if a:mode == 'Enter'
+		let statusline.="%#StatColor#"
+	endif
+	let statusline.="\(%n\)\ %f\ "
+	if a:mode == 'Enter'
+		let statusline.="%*"
+	endif
+	let statusline.="%#Modified#%m"
+	if a:mode == 'Leave'
+		let statusline.="%*%r"
+	elseif a:mode == 'Enter'
+		let statusline.="%r%*"
+	endif
+	let statusline .= "[%L][%{&ff}]%y[%p%%][%04l,%04v]"
+	return statusline
 endfunction
 
 au WinEnter * setlocal statusline=%!MyStatusLine('Enter')
@@ -227,15 +228,15 @@ au WinLeave * setlocal statusline=%!MyStatusLine('Leave')
 set statusline=%!MyStatusLine('Enter')
 
 function! InsertStatuslineColor(mode)
-  if a:mode == 'i'
-    hi StatColor guibg=orange ctermbg=lightred
-  elseif a:mode == 'r'
-    hi StatColor guibg=#e454ba ctermbg=magenta
-  elseif a:mode == 'v'
-    hi StatColor guibg=#e454ba ctermbg=magenta
-  else
-    hi StatColor guibg=red ctermbg=red
-  endif
+	if a:mode == 'i'
+		hi StatColor guibg=orange ctermbg=lightred
+	elseif a:mode == 'r'
+		hi StatColor guibg=#e454ba ctermbg=magenta
+	elseif a:mode == 'v'
+		hi StatColor guibg=#e454ba ctermbg=magenta
+	else
+		hi StatColor guibg=red ctermbg=red
+	endif
 endfunction
 
 au InsertEnter * call InsertStatuslineColor(v:insertmode)
@@ -255,21 +256,21 @@ hi CursorLine cterm=NONE,underline
 
 highlight ExtraWhitespace ctermbg=red guibg=red
 augroup WhitespaceMatch
-  " Remove ALL autocommands for the WhitespaceMatch group.
-  autocmd!
-  autocmd BufWinEnter * let w:whitespace_match_number =
-        \ matchadd('ExtraWhitespace', '\s\+$')
-  autocmd InsertEnter * call s:ToggleWhitespaceMatch('i')
-  autocmd InsertLeave * call s:ToggleWhitespaceMatch('n')
+	" Remove ALL autocommands for the WhitespaceMatch group.
+	autocmd!
+	autocmd BufWinEnter * let w:whitespace_match_number =
+				\ matchadd('ExtraWhitespace', '\s\+$')
+	autocmd InsertEnter * call s:ToggleWhitespaceMatch('i')
+	autocmd InsertLeave * call s:ToggleWhitespaceMatch('n')
 augroup END
 function! s:ToggleWhitespaceMatch(mode)
-  let pattern = (a:mode == 'i') ? '\s\+\%#\@<!$' : '\s\+$'
-  if exists('w:whitespace_match_number')
-    call matchdelete(w:whitespace_match_number)
-    call matchadd('ExtraWhitespace', pattern, 10, w:whitespace_match_number)
-  else
-    " Something went wrong, try to be graceful.
-    let w:whitespace_match_number =  matchadd('ExtraWhitespace', pattern)
-  endif
+	let pattern = (a:mode == 'i') ? '\s\+\%#\@<!$' : '\s\+$'
+	if exists('w:whitespace_match_number')
+		call matchdelete(w:whitespace_match_number)
+		call matchadd('ExtraWhitespace', pattern, 10, w:whitespace_match_number)
+	else
+		" Something went wrong, try to be graceful.
+		let w:whitespace_match_number =  matchadd('ExtraWhitespace', pattern)
+	endif
 endfunction
 
