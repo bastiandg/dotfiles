@@ -195,7 +195,7 @@ alias abs='readlink -f' #shows the absolute path
 alias cmus="$HOME/scripts/cmusbackup.sh && /usr/bin/cmus"
 alias sx="screen -x"
 alias webserver="python -m SimpleHTTPServer 8080"
-alias chmox="chmod +x"
+alias cx="chmod +x"
 
 #colourise
 if [ -e /usr/bin/grc ]

@@ -13,6 +13,8 @@ set wildmenu " enhanced command-line completion
 set t_Co=256
 set background=dark
 colorscheme molokai
+hi IndentGuidesOdd  ctermbg=black
+hi IndentGuidesEven ctermbg=darkgrey
 "let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
 let g:pydiction_location = "$HOME/.vim/dicts/complete-dict"
 "let g:pydiction_location = "/home/bg/.vim/dicts/complete-dict"
