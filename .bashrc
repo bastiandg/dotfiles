@@ -95,7 +95,7 @@ scm_ps1() {
     if [ -d ".svn" ] ; then
         s=\(svn:$(svn info | sed -n -e '/^Revision: \([0-9]*\).*$/s//\1/p' )\)
     fi
-    echo -n "$s"
+    echo -n " $s"
     return $ret #save the returnvalue
 }
 
@@ -108,11 +108,13 @@ fi
 #I ADDED THIS TO SHORTEN PWD
 _PS1 ()
 {
+	ret="$?"
 	local PRE= NAME="$1" LENGTH="$2";
 	[[ "$NAME" != "${NAME#$HOME/}" || -z "${NAME#$HOME}" ]] &&
 	PRE+='~' NAME="${NAME#$HOME}" LENGTH=$[LENGTH-1];
 	((${#NAME}>$LENGTH)) && NAME="/...${NAME:$[${#NAME}-LENGTH+4]}";
 	echo "$PRE$NAME"
+    return $ret #save the returnvalue
 }
 
 #Command Number
@@ -122,20 +124,20 @@ U="\[\e[01;3${hc1}m\]\u\[\e[00m\]"
 #Host
 H="\[\e[01;3${hc2}m\]\h\[\e[00m\]"
 #Directory
-DIR="\[\033[01;34m\]\w\[\033[00m\]"
+DIR="\[\033[01;34m\]"'$(_PS1 "$PWD" 50)'"\[\033[00m\]"
 #Date
 #DATE="\[\033[01;36m\]\t \d\[\033[00m\]"
-DATE="\t \d"
+DATE="\e[1m\t \d\[\033[00m\]"
 #Current tty
 TTY="\l"
 #Return code
 RETURN="\$(ret=\$?; if [[ \$ret = 0 ]];then echo \"\[\033[01;32m\]\$ret\";else echo \"\[\033[01;31m\]\$ret\";fi)\[\033[00m\]"
-
+#
 
 #the actual prompt with a colorised return code
 #PS1="$CMDNR $U@$H:$DIR $RETURN"'$(scm_ps1)'" \$ " #schnell
 #PS1="$CMDNR $U@$H:$DIR $RETURN"'$(parse_svn_revision)'" \$ " #langsam
-PS1="$U@$H - $DATE - tty$TTY - $CMDNR "'$(scm_ps1) '"$ROOT \n\[\033[01;34m\]"'$(_PS1 "$PWD" 50)'"\[\033[00m\] $RETURN \$ " #schnell
+PS1="$DATE - $DIR"'$(scm_ps1)'"$ROOT\n$CMDNR $U@$H $RETURN \$ " #schnell
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
