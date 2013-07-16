@@ -291,6 +291,10 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
+if [ -e ~/.bashrc.local ] ; then
+	. ~/.bashrc.local
+fi
+
 # Set up ssh-agent
 SSH_ENV="$HOME/.ssh/environment"
 
