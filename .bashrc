@@ -7,7 +7,7 @@
 
 #vim the one and only
 export EDITOR=/usr/bin/vim
-export ADMINREPO=/root/adminrepo
+export CDPATH=.:~
 # colorful manpages
 export GREP_OPTIONS='--color=auto'
 #export GREP_COLOR='1;32'
