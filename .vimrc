@@ -93,6 +93,7 @@ au Syntax * RainbowParenthesesLoadBraces
 "au Syntax * RainbowParenthesesLoadChevrons
 
 set nocompatible " explicitly get out of vi-compatible mode
+set incsearch
 inoremap <c-o> <c-x><c-o>
 inoremap <expr> <C-Space> pumvisible() \|\| &omnifunc == '' ?
 			\ "\<lt>C-n>" :
