@@ -175,6 +175,7 @@ inoremap <silent> <F3> <ESC>:YRShow<cr>
 nmap <F4> :e<CR>GL:sleep 1<CR><F4>
 nmap <F5> :call Preserve("%s/\\s\\+$//e")<CR>
 nmap <F6> :call Preserve("normal gg=G")<CR>
+nmap <F7> :DetectIndent<CR>
 "run current script
 map <F9> <ESC>:w<CR>:!%<CR>
 nnoremap <Tab> >>
