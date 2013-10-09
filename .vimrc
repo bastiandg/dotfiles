@@ -175,7 +175,7 @@ inoremap <silent> <F3> <ESC>:YRShow<cr>
 nmap <F4> :e<CR>GL:sleep 1<CR><F4>
 nmap <F5> :call Preserve("%s/\\s\\+$//e")<CR>
 nmap <F6> :call Preserve("normal gg=G")<CR>
-nmap <F7> :DetectIndent<CR>
+"nmap <F7> :DetectIndent<CR>
 "run current script
 map <F9> <ESC>:w<CR>:!%<CR>
 nnoremap <Tab> >>
@@ -192,6 +192,7 @@ cnoreabbrev te tabedit
 "nnoremap <Space> <leader><leader>
 "inoremap ü
 "nnoremap O <leader>c<space>
+
 let g:EasyMotion_leader_key = '<Space>'
 
 set ignorecase               " Do case insensitive matching
@@ -208,6 +209,12 @@ set fileformats=unix,dos,mac " support all three, in this order
 "set nostartofline " leave my cursor where it was
 "set number " turn on line numbers
 "set numberwidth=5 " We are good up to 99999 lines
+let g:detectindent_preferred_expandtab = 1
+let g:detectindent_preferred_indent = 4
+let g:detectindent_max_lines_to_analyse = 1024
+
+"call DetectIndent()
+:autocmd BufReadPost * :DetectIndent
 
 set laststatus=2 " always show the status line
 "set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]
