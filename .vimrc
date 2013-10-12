@@ -91,6 +91,24 @@ au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 "au Syntax * RainbowParenthesesLoadChevrons
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+let g:rbpt_max = 15
 
 set nocompatible " explicitly get out of vi-compatible mode
 set incsearch
@@ -191,12 +209,6 @@ set fileformats=unix,dos,mac " support all three, in this order
 "set nostartofline " leave my cursor where it was
 "set number " turn on line numbers
 "set numberwidth=5 " We are good up to 99999 lines
-let g:detectindent_preferred_expandtab = 1
-let g:detectindent_preferred_indent = 4
-let g:detectindent_max_lines_to_analyse = 1024
-
-"call DetectIndent()
-:autocmd BufReadPost * :DetectIndent
 
 set laststatus=2 " always show the status line
 "set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]
