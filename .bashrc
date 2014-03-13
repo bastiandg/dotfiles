@@ -198,6 +198,7 @@ alias cmus="$HOME/scripts/cmusbackup.sh && /usr/bin/cmus"
 alias sx="screen -x"
 alias webserver="python -m SimpleHTTPServer 8080"
 alias cx="chmod +x"
+alias mtr="mtr -t" #curses and no X for mtr
 
 #colourise
 if [ -e /usr/bin/grc ]
