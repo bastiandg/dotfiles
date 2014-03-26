@@ -47,6 +47,9 @@ let g:tex_conceal= 'adgm'
 "hi Conceal guibg=DarkMagenta guifg=White
 hi Conceal cterm=bold ctermfg=161 ctermbg=0 guibg=White guifg=DarkMagenta
 
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
+
 "Keep search pattern at the center of the screen.
 nnoremap <silent> n nzz
 nnoremap <silent> N Nzz
