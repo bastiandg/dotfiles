@@ -81,8 +81,8 @@ let g:neocomplcache_enable_smart_case = 1
 
 "let g:solarized_termcolors=256
 "colorscheme solarized
-let mapleader = ","
-let g:mapleader = ","
+let mapleader = "\<Space>"
+let g:mapleader = "\<Space>"
 "colorscheme wombat256mod
 set history=10000
 set showmode
@@ -131,11 +131,14 @@ autocmd BufReadPost *
 			\   exe "normal! g`\"" |
 			\ endif
 
-"nnoremap <up> gk
-"nnoremap <down> gj
-"inoremap <up> <ESC>gka
-"inoremap <down> <ESC>gja
-"Show Yankring
+nnoremap <CR> G
+nnoremap <BS> gg
+vmap <Leader>y "+y
+vmap <Leader>d "+d
+nmap <Leader>p "+p
+nmap <Leader>P "+P
+vmap <Leader>p "+p
+vmap <Leader>P "+P
 "Split Window movement
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
