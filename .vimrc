@@ -139,6 +139,11 @@ nmap <Leader>p "+p
 nmap <Leader>P "+P
 vmap <Leader>p "+p
 vmap <Leader>P "+P
+vmap  <expr>  <LEFT>   DVB_Drag('left')
+vmap  <expr>  <RIGHT>  DVB_Drag('right')
+vmap  <expr>  <DOWN>   DVB_Drag('down')
+vmap  <expr>  <UP>     DVB_Drag('up')
+vmap  <expr>  D        DVB_Duplicate()
 "Split Window movement
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
@@ -155,10 +160,6 @@ inoremap <up> <nop>
 inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
-vnoremap <up> <nop>
-vnoremap <down> <nop>
-vnoremap <left> <nop>
-vnoremap <right> <nop>
 nnoremap j gj
 nnoremap k gk
 "Commenting function with ü
@@ -212,9 +213,7 @@ set smartindent              " always set smartindenting on
 set autoindent               " always set autoindenting on
 set copyindent               " always set copyindenting on
 set fileformats=unix,dos,mac " support all three, in this order
-"set nostartofline " leave my cursor where it was
-"set number " turn on line numbers
-"set numberwidth=5 " We are good up to 99999 lines
+set nostartofline " leave my cursor where it was
 
 set laststatus=2 " always show the status line
 "set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]
