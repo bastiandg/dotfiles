@@ -168,6 +168,8 @@ if [ -e  "$HOME/.local-aliases" ]; then
 fi
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
+bind '"\eOC":forward-word'
+bind '"\eOD":backward-word'
 # aliases
 alias ll='ls -l'
 alias la='ls -A'
