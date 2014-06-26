@@ -13,10 +13,12 @@ set wildmenu " enhanced command-line completion
 set t_Co=256
 set background=dark
 colorscheme molokai
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_auto_colors = 0
-hi IndentGuidesOdd  ctermbg=black ctermfg=237
-hi IndentGuidesEven ctermbg=233 ctermfg=239
+if version >= 710
+       let g:indent_guides_enable_on_vim_startup = 1
+       let g:indent_guides_auto_colors = 0
+       hi IndentGuidesOdd  ctermbg=black ctermfg=237
+       hi IndentGuidesEven ctermbg=233 ctermfg=239
+endif
 "let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
 let g:pydiction_location = "$HOME/.vim/dicts/complete-dict"
 "let g:pydiction_location = "/home/bg/.vim/dicts/complete-dict"
@@ -42,10 +44,12 @@ function! Preserve(command)
 	call cursor(l, c)
 endfunction
 
-set cole=2
-let g:tex_conceal= 'adgm'
-"hi Conceal guibg=DarkMagenta guifg=White
-hi Conceal cterm=bold ctermfg=161 ctermbg=0 guibg=White guifg=DarkMagenta
+if has('conceal')
+       set cole=2
+       let g:tex_conceal= 'adgm'
+       "hi Conceal guibg=DarkMagenta guifg=White
+       hi Conceal cterm=bold ctermfg=161 ctermbg=0 guibg=White guifg=DarkMagenta
+endif
 
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
@@ -73,11 +77,13 @@ smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 "inoremap <expr><C-j> pumvisible()? "\<C-n>" : "\<C-j>"
 "inoremap <expr><C-k> pumvisible()?  "\<C-p>" : "\<C-k>"
 
-let g:acp_enableAtStartup = 0
-" Use neocomplcache.
-let g:neocomplcache_enable_at_startup = 1
-"  Use smartcase.
-let g:neocomplcache_enable_smart_case = 1
+if version >= 710
+       let g:acp_enableAtStartup = 0
+       " Use neocomplcache.
+       let g:neocomplcache_enable_at_startup = 1
+       "  Use smartcase.
+       let g:neocomplcache_enable_smart_case = 1
+endif
 
 "let g:solarized_termcolors=256
 "colorscheme solarized
@@ -139,11 +145,6 @@ nmap <Leader>p "+p
 nmap <Leader>P "+P
 vmap <Leader>p "+p
 vmap <Leader>P "+P
-vmap  <expr>  <LEFT>   DVB_Drag('left')
-vmap  <expr>  <RIGHT>  DVB_Drag('right')
-vmap  <expr>  <DOWN>   DVB_Drag('down')
-vmap  <expr>  <UP>     DVB_Drag('up')
-vmap  <expr>  D        DVB_Duplicate()
 "Split Window movement
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
@@ -152,14 +153,14 @@ nnoremap <C-l> <C-w>l
 inoremap jj <ESC>
 nnoremap ; :
 "movement keys
-nnoremap <up> :tabnew<CR>
-nnoremap <down> <nop>
-nnoremap <left> :tabprevious<CR>
-nnoremap <right> :tabnext<CR>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
+"nnoremap <up> :tabnew<CR>
+"nnoremap <down> <nop>
+"nnoremap <left> :tabprevious<CR>
+"nnoremap <right> :tabnext<CR>
+"inoremap <up> <nop>
+"inoremap <down> <nop>
+"inoremap <left> <nop>
+"inoremap <right> <nop>
 nnoremap j gj
 nnoremap k gk
 "Commenting function with ü
@@ -283,6 +284,10 @@ endif
 set cursorline
 "underline the current line
 hi CursorLine cterm=NONE,underline
+
+if has("gui_running")
+       set guifont=Source\ Code\ Pro\ 14
+endif
 
 highlight ExtraWhitespace ctermbg=red guibg=red
 augroup WhitespaceMatch
