@@ -131,7 +131,7 @@ DATE="\e[1m\t \d\[\033[00m\]"
 #Current tty
 TTY="\l"
 #Return code
-RETURN="\$(ret=\$?; if [[ \$ret = 0 ]];then echo \"\[\033[01;32m\]\$ret\";else echo \"\[\033[01;31m\]\$ret\";fi)\[\033[00m\]"
+RETURN="\$(ret=\$?; if [[ \$ret = 0 ]];then echo \"\[\033[01;32m\]✓\";else echo \"\[\033[01;31m\]\$ret\";fi)\[\033[00m\]"
 #
 
 #the actual prompt with a colorised return code
