@@ -183,6 +183,8 @@ inoremap <silent> <F3> <ESC>:YRShow<cr>
 nmap <F4> :e<CR>GL:sleep 1<CR><F4>
 nmap <F5> :call Preserve("%s/\\s\\+$//e")<CR>
 nmap <F6> :call Preserve("normal gg=G")<CR>
+map <F7> :call MySpellLang()<CR>
+imap <F7> <C-o>:call MySpellLang()<CR>
 "nmap <F7> :DetectIndent<CR>
 "run current script
 map <F9> <ESC>:w<CR>:!%<CR>
@@ -288,6 +290,22 @@ hi CursorLine cterm=NONE,underline
 if has("gui_running")
        set guifont=Source\ Code\ Pro\ 14
 endif
+
+
+
+"switch spellcheck languages
+let g:myLang = 0
+let g:myLangList = [ "nospell", "de_de", "en_us" ]
+function! MySpellLang()
+  "loop through languages
+  let g:myLang = g:myLang + 1
+  if g:myLang >= len(g:myLangList) | let g:myLang = 0 | endif
+  if g:myLang == 0 | set nospell | endif
+  if g:myLang == 1 | setlocal spell spelllang=de_de | endif
+  if g:myLang == 2 | setlocal spell spelllang=en_us | endif
+  echo "language:" g:myLangList[g:myLang]
+endf
+
 
 highlight ExtraWhitespace ctermbg=red guibg=red
 augroup WhitespaceMatch
