@@ -10,7 +10,6 @@ export EDITOR=/usr/bin/vim
 export CDPATH=.:~
 # colorful manpages
 export GREP_OPTIONS='--color=auto'
-#export GREP_COLOR='1;32'
 export LESS_TERMCAP_mb=$'\E[01;31m'
 export LESS_TERMCAP_md=$'\E[01;36m'
 export LESS_TERMCAP_me=$'\E[0m'
@@ -45,9 +44,6 @@ export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# make less more friendly for non-text input files, see lesspipe(1)
-#[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
@@ -67,36 +63,21 @@ parse_git_branch() {
 	echo "($(git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* //')$DIRTY)"
 }
 
-#parse_svn_revision() {
-	#local DIRTY 
-	#REV=$(svn info 2>/dev/null | grep Revision | sed -e 's/Revision: //')
-	#echo "$(svn info \| grep Revision)" # \| sed -e 's/Revision: //')"
-	#[ "$REV" ] || echo " $REV" && return "1234"
-	#[ "$(svn st)" ] && DIRTY=' *'
-	#echo "(r$REV$DIRTY)"
-#}
 parse_svn_revision() {
 	local REV=$(svnversion 2>/dev/null)
-	#[ -d ".svn" ] || return
 	[ $? -eq 0 ] || return
 	[ "$REV" == 'exportiert' ] && return
 	echo " ($REV)"
-	#echo "$REV" | grep : &> /dev/null
-	#if [ $? == "0" ] ; then
-		#echo "\\[\\033[01;32m\\]($REV)\\[\\033[00m\\]"
-	#else
-		#echo "REV"
-	#fi
 }
 
 scm_ps1() {
 	ret="$?"
-    local s=
-    if [ -d ".svn" ] ; then
-        s=\(svn:$(svn info | sed -n -e '/^Revision: \([0-9]*\).*$/s//\1/p' )\)
-    fi
-    echo -n " $s"
-    return $ret #save the returnvalue
+	local s=
+	if [ -d ".svn" ] ; then
+		s=\(svn:$(svn info | sed -n -e '/^Revision: \([0-9]*\).*$/s//\1/p' )\)
+	fi
+	echo -n " $s"
+	return $ret #save the returnvalue
 }
 
 if [ "$(whoami)" == "root" ] ; then
@@ -105,7 +86,7 @@ else
 	ROOT=""
 fi
 
-#I ADDED THIS TO SHORTEN PWD
+#SHORTEN PWD
 _PS1 ()
 {
 	ret="$?"
@@ -126,7 +107,6 @@ H="\[\e[01;3${hc2}m\]\h\[\e[00m\]"
 #Directory
 DIR="\[\033[01;34m\]"'$(_PS1 "$PWD" 50)'"\[\033[00m\]"
 #Date
-#DATE="\[\033[01;36m\]\t \d\[\033[00m\]"
 DATE="\e[1m\t \d\[\033[00m\]"
 #Current tty
 TTY="\l"
@@ -135,8 +115,6 @@ RETURN="\$(ret=\$?; if [[ \$ret = 0 ]];then echo \"\[\033[01;32m\]✓\";else ech
 #
 
 #the actual prompt with a colorised return code
-#PS1="$CMDNR $U@$H:$DIR $RETURN"'$(scm_ps1)'" \$ " #schnell
-#PS1="$CMDNR $U@$H:$DIR $RETURN"'$(parse_svn_revision)'" \$ " #langsam
 PS1="$DATE - $DIR"'$(scm_ps1)'"$ROOT\n$CMDNR $U@$H $RETURN \$ " #schnell
 
 # If this is an xterm set the title to user@host:dir
@@ -147,15 +125,6 @@ xterm*|rxvt*)
 *)
     ;;
 esac
-
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-#if [ -f ~/.bash_aliases ]; then
-#    . ~/.bash_aliases
-#fi
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -196,7 +165,6 @@ alias f='find . -iname'
 alias s='ssh'
 alias ducks='du -cksh * | sort -rh | head -11' # Lists folders and files sizes in the current folder
 alias abs='readlink -f' #shows the absolute path
-alias cmus="$HOME/scripts/cmusbackup.sh && /usr/bin/cmus"
 alias sx="screen -x"
 alias webserver="python -m SimpleHTTPServer 8080"
 alias cx="chmod +x"
@@ -227,7 +195,12 @@ fi
 function update_dotfiles() {
 	if [ "$(which git)" ]; then
 		if [ ! -e ~/dotfiles/ ] ; then
-			git clone git@github.com:bastiandg/dotfiles.git ~/dotfiles
+			# use the ssh variant if it's me
+			if [ "$USER" = "bastian" -o "$USER" = "bg" -o "$USER" = "bdegroot" ] ; then
+				git clone git@github.com:bastiandg/dotfiles.git ~/dotfiles
+			else
+				git clone https://github.com/bastiandg/dotfiles.git ~/dotfiles
+			fi
 		else
 			(cd ~/dotfiles/ && git pull)
 		fi
@@ -287,9 +260,7 @@ extract() {
      fi
 }
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
+# enable programmable completion features
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi

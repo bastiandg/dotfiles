@@ -19,18 +19,12 @@ if version >= 710
        hi IndentGuidesOdd  ctermbg=black ctermfg=237
        hi IndentGuidesEven ctermbg=233 ctermfg=239
 endif
-"let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
 let g:pydiction_location = "$HOME/.vim/dicts/complete-dict"
-"let g:pydiction_location = "/home/bg/.vim/dicts/complete-dict"
-" SuperTab like snippets behavior.
-"imap <TAB> neocomplcache#sources#snippets_complete#expandable() ?
-"imap <TAB> neocomplcache#sources#snippets_complete#expandable() ? \<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
 
 if exists("+undofile")
 	set udf
 	set undodir=~/.vimundo
 endif
-
 
 function! Preserve(command)
 	" Preparation: save last search, and cursor position.
@@ -74,8 +68,6 @@ inoremap <expr><C-e>  neocomplcache#cancel_popup()
 " Plugin key-mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-"inoremap <expr><C-j> pumvisible()? "\<C-n>" : "\<C-j>"
-"inoremap <expr><C-k> pumvisible()?  "\<C-p>" : "\<C-k>"
 
 if version >= 710
        let g:acp_enableAtStartup = 0
@@ -85,11 +77,8 @@ if version >= 710
        let g:neocomplcache_enable_smart_case = 1
 endif
 
-"let g:solarized_termcolors=256
-"colorscheme solarized
 let mapleader = "\<Space>"
 let g:mapleader = "\<Space>"
-"colorscheme wombat256mod
 set history=10000
 set showmode
 set hlsearch "highlight search results
@@ -99,7 +88,6 @@ au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
-"au Syntax * RainbowParenthesesLoadChevrons
 let g:rbpt_colorpairs = [
     \ ['brown',       'RoyalBlue3'],
     \ ['Darkblue',    'SeaGreen3'],
@@ -128,7 +116,6 @@ inoremap <expr> <C-Space> pumvisible() \|\| &omnifunc == '' ?
 			\ "\"\\<lt>c-n>\\<lt>c-p>\\<lt>c-n>\" :" .
 			\ "\" \\<lt>bs>\\<lt>C-n>\"\<CR>"
 imap <C-@> <C-Space>
-"inoremap <c-space> <c-x><c-o>
 inoremap <silent><Down> <C-r>=pumvisible()?"\<lt>C-n>":"\<lt>Down>"<CR>
 inoremap <silent><Up> <C-r>=pumvisible()?"\<lt>C-p>":"\<lt>Up>"<CR>
 
@@ -177,15 +164,14 @@ nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
-"tail -f like action
 nnoremap <silent> <F3> :YRShow<cr>
 inoremap <silent> <F3> <ESC>:YRShow<cr>
+"tail -f like action
 nmap <F4> :e<CR>GL:sleep 1<CR><F4>
 nmap <F5> :call Preserve("%s/\\s\\+$//e")<CR>
 nmap <F6> :call Preserve("normal gg=G")<CR>
 map <F7> :call MySpellLang()<CR>
 imap <F7> <C-o>:call MySpellLang()<CR>
-"nmap <F7> :DetectIndent<CR>
 "run current script
 map <F9> <ESC>:w<CR>:!%<CR>
 nnoremap <Tab> >>
@@ -198,10 +184,8 @@ nnoremap U <C-r>
 :command Wq wq
 :command W w
 :command Q q
+
 cnoreabbrev te tabedit
-"nnoremap <Space> <leader><leader>
-"inoremap ü
-"nnoremap O <leader>c<space>
 
 let g:EasyMotion_leader_key = '<Space>'
 
@@ -291,8 +275,6 @@ if has("gui_running")
        set guifont=Source\ Code\ Pro\ 14
 endif
 
-
-
 "switch spellcheck languages
 let g:myLang = 0
 let g:myLangList = [ "nospell", "de_de", "en_us" ]
@@ -316,6 +298,7 @@ augroup WhitespaceMatch
 	autocmd InsertEnter * call s:ToggleWhitespaceMatch('i')
 	autocmd InsertLeave * call s:ToggleWhitespaceMatch('n')
 augroup END
+
 function! s:ToggleWhitespaceMatch(mode)
 	let pattern = (a:mode == 'i') ? '\s\+\%#\@<!$' : '\s\+$'
 	if exists('w:whitespace_match_number')
@@ -326,6 +309,7 @@ function! s:ToggleWhitespaceMatch(mode)
 		let w:whitespace_match_number =  matchadd('ExtraWhitespace', pattern)
 	endif
 endfunction
+
 vnoremap <silent> * :<C-U>
   \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
   \gvy/<C-R><C-R>=substitute(
