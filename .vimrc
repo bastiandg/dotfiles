@@ -84,28 +84,25 @@ set showmode
 set hlsearch "highlight search results
 set number "line numbers
 set so=10 "scroll offset
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
-let g:rbpt_colorpairs = [
-    \ ['brown',       'RoyalBlue3'],
-    \ ['Darkblue',    'SeaGreen3'],
-    \ ['darkgray',    'DarkOrchid3'],
-    \ ['darkgreen',   'firebrick3'],
-    \ ['darkcyan',    'RoyalBlue3'],
-    \ ['darkred',     'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['brown',       'firebrick3'],
-    \ ['gray',        'RoyalBlue3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['Darkblue',    'firebrick3'],
-    \ ['darkgreen',   'RoyalBlue3'],
-    \ ['darkcyan',    'SeaGreen3'],
-    \ ['darkred',     'DarkOrchid3'],
-    \ ['red',         'firebrick3'],
-    \ ]
-let g:rbpt_max = 15
+let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
+let g:rainbow_conf = {
+    \   'guifgs': ['firebrick3', 'DarkOrchid3', 'SeaGreen3', 'RoyalBlue3', 'firebrick3', 'DarkOrchid3', 'RoyalBlue3', 'firebrick3', 'DarkOrchid3', 'SeaGreen3', 'RoyalBlue3', 'firebrick3', 'DarkOrchid3', 'SeaGreen3', 'RoyalBlue3'],
+    \   'ctermfgs': ['red', 'darkred', 'darkcyan', 'darkgreen', 'Darkblue', 'darkmagenta', 'gray', 'brown', 'darkmagenta', 'darkred', 'darkcyan', 'darkgreen', 'darkgray', 'Darkblue', 'brown'],
+    \   'operators': '_,_',
+    \   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+    \   'separately': {
+    \       '*': {},
+    \       'tex': {
+    \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+    \       },
+    \       'vim': {
+    \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+    \       },
+    \       'html': {
+    \           'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+    \       },
+    \   }
+    \}
 
 set nocompatible " explicitly get out of vi-compatible mode
 set incsearch
