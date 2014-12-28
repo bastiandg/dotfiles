@@ -1,3 +1,6 @@
 [submodule ".vim/bundle/rainbow"]
 	path = .vim/bundle/rainbow
 	url = https://github.com/luochen1990/rainbow.git
+[submodule ".vim/bundle/vim-cute-python"]
+	path = .vim/bundle/vim-cute-python
+	url = https://github.com/ehamberg/vim-cute-python.git
