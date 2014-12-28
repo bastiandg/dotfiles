@@ -99,6 +99,8 @@ if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
 
+let g:neosnippet#snippets_directory='~/.vim/neosnippet-snippets/neosnippets/'
+
 let mapleader = "\<Space>"
 let g:mapleader = "\<Space>"
 set history=10000
