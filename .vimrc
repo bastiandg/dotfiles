@@ -206,8 +206,6 @@ nnoremap U <C-r>
 
 cnoreabbrev te tabedit
 
-let g:EasyMotion_leader_key = '<Space>'
-
 set ignorecase               " Do case insensitive matching
 set smartcase                " overwrite ignorecase if pattern contains uppercase characters
 set shiftwidth=4             " number of spaces to use for each step of indent
