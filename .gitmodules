@@ -4,3 +4,6 @@
 [submodule ".vim/bundle/vim-cute-python"]
 	path = .vim/bundle/vim-cute-python
 	url = https://github.com/ehamberg/vim-cute-python.git
+[submodule ".vim/bundle/nerdcommenter"]
+	path = .vim/bundle/nerdcommenter
+	url = https://github.com/scrooloose/nerdcommenter.git
