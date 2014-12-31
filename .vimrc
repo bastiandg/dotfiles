@@ -38,10 +38,10 @@ function! Preserve(command)
 endfunction
 
 if has('conceal')
-       set cole=2
-       let g:tex_conceal= 'adgm'
-       "hi Conceal guibg=DarkMagenta guifg=White
-       hi Conceal cterm=bold ctermfg=161 ctermbg=0 guibg=White guifg=DarkMagenta
+	set cole=2
+	let g:tex_conceal= 'adgm'
+	"hi Conceal guibg=DarkMagenta guifg=White
+	hi Conceal cterm=bold ctermfg=161 ctermbg=0 guibg=White guifg=DarkMagenta
 endif
 
 vmap v <Plug>(expand_region_expand)
@@ -110,7 +110,7 @@ let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
 let g:rainbow_conf = {
     \   'guifgs': ['firebrick3', 'DarkOrchid3', 'SeaGreen3', 'RoyalBlue3', 'firebrick3', 'DarkOrchid3', 'RoyalBlue3', 'firebrick3', 'DarkOrchid3', 'SeaGreen3', 'RoyalBlue3', 'firebrick3', 'DarkOrchid3', 'SeaGreen3', 'RoyalBlue3'],
     \   'ctermfgs': ['red', 'darkred', 'darkcyan', 'darkgreen', 'Darkblue', 'darkmagenta', 'gray', 'brown', 'darkmagenta', 'darkred', 'darkcyan', 'darkgreen', 'darkgray', 'Darkblue', 'brown'],
-    \   'operators': '_,_',
+    \   'operators': '_,\|+\|-\|\*\|\/\|\*\*_',
     \   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
     \   'separately': {
     \       '*': {},
