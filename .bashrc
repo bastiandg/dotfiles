@@ -151,7 +151,7 @@ alias du='du -ch'
 alias clip='xclip -selection clipboard'
 alias ..='cd ..'
 alias ...='cd ../..'
-alias hg='history | grep'
+alias hg='history | grep -i'
 alias diff="diff -u"
 alias utop='top -u "$USER"'
 alias irc='screen -x irc'
@@ -219,12 +219,12 @@ function bak() {
 
 #grep the history and show the results in less
 function hgl () {
-	history | grep "$1" | less
+	history | grep -i "$1" | less
 }
 
 #grep for processes
 function psg () {
-	ps aux | grep "$1"
+	ps aux | grep -i "$1"
 }
 
 #calculate
