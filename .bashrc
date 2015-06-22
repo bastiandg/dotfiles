@@ -151,7 +151,7 @@ alias du='du -ch'
 alias clip='xclip -selection clipboard'
 alias ..='cd ..'
 alias ...='cd ../..'
-alias hg='history | grep -i'
+alias hg='history | grep -i -B3'
 alias diff="diff -u"
 alias utop='top -u "$USER"'
 alias irc='screen -x irc'
@@ -196,7 +196,7 @@ function update_dotfiles() {
 	if [ "$(which git)" ]; then
 		if [ ! -e ~/dotfiles/ ] ; then
 			# use the ssh variant if it's me
-			if [ "$USER" = "bastian" -o "$USER" = "bg" -o "$USER" = "bdegroot" ] ; then
+			if [ -e "~/.ssh/id_rsa" -a \( "$USER" = "bastian" -o "$USER" = "bg" -o "$USER" = "bdegroot" \) ] ; then
 				git clone git@github.com:bastiandg/dotfiles.git ~/dotfiles
 			else
 				git clone https://github.com/bastiandg/dotfiles.git ~/dotfiles
