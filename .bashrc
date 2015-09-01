@@ -141,8 +141,8 @@ bind '"\eOC":forward-word'
 bind '"\eOD":backward-word'
 # aliases
 alias ll='ls -l'
-alias la='ls -A'
-alias lla='ls -lA'
+alias la='ls -la'
+alias lla='ls -la'
 alias l='ls -l'
 alias cp='cp -vr'
 alias mv='mv -v'
@@ -179,8 +179,6 @@ then
 	alias netstat='grc netstat'
 	alias diffc='grc diff -u'
 	alias make='grc make'
-	alias tail='grc tail'
-	alias cat='grc cat'
 	function log () {
 		grc cat "$1" | less
 	}
