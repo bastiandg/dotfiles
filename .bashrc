@@ -169,6 +169,7 @@ alias sx="screen -x"
 alias webserver="python -m SimpleHTTPServer 8080"
 alias cx="chmod +x"
 alias mtr="mtr -t" #curses and no X for mtr
+alias il='ip addr | grep inet | sed -e "s#\s*inet \([0-9.]*\).*\ \([a-z0-9]*\)#\2 \1#g"'
 
 #colourise
 if [ -e /usr/bin/grc ]
