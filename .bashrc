@@ -147,7 +147,7 @@ _PS1 ()
 }
 
 lighten () {
-    echo "$(printf '%.0f' "$(calc "scale=0; $1 + (255 - $1) * $2")")"
+    echo "$(LANG=C printf '%.0f' "$(calc "scale=0; $1 + (255 - $1) * $2")")"
 }
 
 md5="$(hostname -f | md5sum | cut -d" " -f1)"
