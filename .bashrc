@@ -44,6 +44,64 @@ export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
+# aliases
+alias ll='ls -l'
+alias la='ls -la'
+alias lla='ls -la'
+alias l='ls -l'
+alias cp='cp -vr'
+alias mv='mv -v'
+alias rm='rm -v'
+alias du='du -ch'
+alias clip='xclip -selection clipboard'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias hg='history | grep -i -B3'
+alias diff="diff -u"
+alias utop='top -u "$USER"'
+alias irc='screen -x irc'
+alias vla='virsh list --all'
+alias g='grep'
+alias mkdir='mkdir -p'
+alias df='df -h'
+alias vim='vim -X'
+alias v='vim'
+alias f='find . -iname'
+alias s='ssh'
+alias ducks='du -cksh * | sort -rh | head -11' # Lists folders and files sizes in the current folder
+alias abs='readlink -f' #shows the absolute path
+alias sx="screen -x"
+alias webserver="python -m SimpleHTTPServer 8080"
+alias cx="chmod +x"
+alias mtr="mtr -t" #curses and no X for mtr
+alias telnet="telnet -eq"
+alias il='ip addr | grep inet | sed -e "s#\s*inet \([0-9.]*\).*\ \([a-z0-9]*\)#\2 \1#g"'
+
+#calculate
+calc () {
+	echo "$*" | bc -l
+}
+
+#colourise
+if [ -e /usr/bin/grc ]
+then
+	alias grc='grc -es'
+	alias ping='grc ping'
+	alias traceroute='grc /usr/sbin/traceroute'
+	alias netstat='grc netstat'
+	alias diffc='grc diff -u'
+	alias make='grc make'
+	function log () {
+		grc cat "$1" | less
+	}
+fi
+
+#use htop instead of top
+if [ -e /usr/bin/htop ]
+then
+	alias top='htop'
+fi
+
 # Prompt setup, with SCM status
 parse_git_branch() {
 	local DIRTY STATUS
@@ -88,6 +146,10 @@ _PS1 ()
     return $ret #save the returnvalue
 }
 
+lighten () {
+    echo "$(printf '%.0f' "$(calc "scale=0; $1 + (255 - $1) * $2")")"
+}
+
 md5="$(hostname -f | md5sum | cut -d" " -f1)"
 r1="$((16#${md5:0:2}))"
 r2="$((16#${md5:2:2}))"
@@ -95,25 +157,14 @@ g1="$((16#${md5:4:2}))"
 g2="$((16#${md5:6:2}))"
 b1="$((16#${md5:8:2}))"
 b2="$((16#${md5:10:2}))"
+fac="0.1"
 
-if [ $r1 -lt 80 ] ; then
-    r1=$(($r1 * 2 ))
-fi
-if [ $r2 -lt 80 ] ; then
-    r2=$(($r2 * 2 ))
-fi
-if [ $g1 -lt 80 ] ; then
-    g1=$(($g1 * 2 ))
-fi
-if [ $g2 -lt 80 ] ; then
-    g2=$(($g2 * 2 ))
-fi
-if [ $b1 -lt 80 ] ; then
-    b1=$(($b1 * 2 ))
-fi
-if [ $r2 -lt 80 ] ; then
-    b2=$(($b2 * 2 ))
-fi
+r1=$(lighten $r1 $fac)
+r2=$(lighten $r2 $fac)
+g1=$(lighten $g1 $fac)
+g2=$(lighten $g2 $fac)
+b1=$(lighten $b1 $fac)
+b2=$(lighten $b2 $fac)
 
 #Command Number
 CMDNR="\!"
@@ -158,58 +209,6 @@ bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
 bind '"\eOC":forward-word'
 bind '"\eOD":backward-word'
-# aliases
-alias ll='ls -l'
-alias la='ls -la'
-alias lla='ls -la'
-alias l='ls -l'
-alias cp='cp -vr'
-alias mv='mv -v'
-alias rm='rm -v'
-alias du='du -ch'
-alias clip='xclip -selection clipboard'
-alias ..='cd ..'
-alias ...='cd ../..'
-alias hg='history | grep -i -B3'
-alias diff="diff -u"
-alias utop='top -u "$USER"'
-alias irc='screen -x irc'
-alias vla='virsh list --all'
-alias g='grep'
-alias mkdir='mkdir -p'
-alias df='df -h'
-alias vim='vim -X'
-alias v='vim'
-alias f='find . -iname'
-alias s='ssh'
-alias ducks='du -cksh * | sort -rh | head -11' # Lists folders and files sizes in the current folder
-alias abs='readlink -f' #shows the absolute path
-alias sx="screen -x"
-alias webserver="python -m SimpleHTTPServer 8080"
-alias cx="chmod +x"
-alias mtr="mtr -t" #curses and no X for mtr
-alias telnet="telnet -eq"
-alias il='ip addr | grep inet | sed -e "s#\s*inet \([0-9.]*\).*\ \([a-z0-9]*\)#\2 \1#g"'
-
-#colourise
-if [ -e /usr/bin/grc ]
-then
-	alias grc='grc -es'
-	alias ping='grc ping'
-	alias traceroute='grc /usr/sbin/traceroute'
-	alias netstat='grc netstat'
-	alias diffc='grc diff -u'
-	alias make='grc make'
-	function log () {
-		grc cat "$1" | less
-	}
-fi
-
-#use htop instead of top
-if [ -e /usr/bin/htop ]
-then
-	alias top='htop'
-fi
 
 function update_dotfiles() {
 	if [ "$(which git)" ]; then
@@ -246,10 +245,6 @@ function psg () {
 	ps aux | grep -i "$1"
 }
 
-#calculate
-calc () {
-	echo "$*" | bc -l
-}
 
 #make a directory and change to it
 mcd () {
