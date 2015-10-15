@@ -44,16 +44,6 @@ export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
-fi
-
-#make a unique color prompt for every host
-seed=$(hostname -f | md5sum | tr -dc '1234567')
-hc1=${seed:1:1}
-hc2=${seed:2:1}
-
 # Prompt setup, with SCM status
 parse_git_branch() {
 	local DIRTY STATUS
@@ -98,12 +88,41 @@ _PS1 ()
     return $ret #save the returnvalue
 }
 
+md5="$(hostname -f | md5sum | cut -d" " -f1)"
+r1="$((16#${md5:0:2}))"
+r2="$((16#${md5:2:2}))"
+g1="$((16#${md5:4:2}))"
+g2="$((16#${md5:6:2}))"
+b1="$((16#${md5:8:2}))"
+b2="$((16#${md5:10:2}))"
+
+if [ $r1 -lt 80 ] ; then
+    r1=$(($r1 * 2 ))
+fi
+if [ $r2 -lt 80 ] ; then
+    r2=$(($r2 * 2 ))
+fi
+if [ $g1 -lt 80 ] ; then
+    g1=$(($g1 * 2 ))
+fi
+if [ $g2 -lt 80 ] ; then
+    g2=$(($g2 * 2 ))
+fi
+if [ $b1 -lt 80 ] ; then
+    b1=$(($b1 * 2 ))
+fi
+if [ $r2 -lt 80 ] ; then
+    b2=$(($b2 * 2 ))
+fi
+
 #Command Number
 CMDNR="\!"
 #User
-U="\[\e[01;3${hc1}m\]\u\[\e[00m\]"
+U="\033[38;2;$r1;$g1;${b1}m\u\033[00m"
+
 #Host
-H="\[\e[01;3${hc2}m\]\h\[\e[00m\]"
+H="\033[38;2;$r2;$g2;${b2}m\h\033[00m"
+
 #Directory
 DIR="\[\033[01;34m\]"'$(_PS1 "$PWD" 50)'"\[\033[00m\]"
 #Date
@@ -169,6 +188,7 @@ alias sx="screen -x"
 alias webserver="python -m SimpleHTTPServer 8080"
 alias cx="chmod +x"
 alias mtr="mtr -t" #curses and no X for mtr
+alias telnet="telnet -eq"
 alias il='ip addr | grep inet | sed -e "s#\s*inet \([0-9.]*\).*\ \([a-z0-9]*\)#\2 \1#g"'
 
 #colourise
