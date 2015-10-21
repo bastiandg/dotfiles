@@ -151,20 +151,28 @@ lighten () {
 }
 
 md5="$(hostname -f | md5sum | cut -d" " -f1)"
-r1="$((16#${md5:0:2}))"
-r2="$((16#${md5:2:2}))"
-g1="$((16#${md5:4:2}))"
-g2="$((16#${md5:6:2}))"
-b1="$((16#${md5:8:2}))"
-b2="$((16#${md5:10:2}))"
+threshold="80"
 fac="0.1"
+pos="0"
+r1="0" g1="0" b1="0" r2="0" g2="0" b2="0"
+while [ \( \( $r1 -le $threshold -a $g1 -le $threshold -a $b1 -le $threshold \) \
+    -o \( $r2 -le $threshold -a $g2 -le $threshold -a $b2 -le $threshold \) \) \
+    -a $pos -lt 20 ] ; do
+    r1="$((16#${md5:$pos:2}))"
+    r2="$((16#${md5:$((pos + 2)):2}))"
+    g1="$((16#${md5:$((pos + 4)):2}))"
+    g2="$((16#${md5:$((pos + 6)):2}))"
+    b1="$((16#${md5:$((pos + 8)):2}))"
+    b2="$((16#${md5:$((pos + 10)):2}))"
 
-r1=$(lighten $r1 $fac)
-r2=$(lighten $r2 $fac)
-g1=$(lighten $g1 $fac)
-g2=$(lighten $g2 $fac)
-b1=$(lighten $b1 $fac)
-b2=$(lighten $b2 $fac)
+    r1=$(lighten $r1 $fac)
+    r2=$(lighten $r2 $fac)
+    g1=$(lighten $g1 $fac)
+    g2=$(lighten $g2 $fac)
+    b1=$(lighten $b1 $fac)
+    b2=$(lighten $b2 $fac)
+    pos=$((pos + 2))
+done
 
 #Command Number
 CMDNR="\!"
