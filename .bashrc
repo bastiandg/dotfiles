@@ -18,6 +18,7 @@ export LESS_TERMCAP_so=$'\E[01;44;33m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 export LESS=' -iR'
+export NVIM_TUI_ENABLE_TRUE_COLOR='1'
 
 #add my own scripts to the command list
 if [ -d ~/script ]
