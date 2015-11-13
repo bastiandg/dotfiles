@@ -39,7 +39,7 @@ shopt -s histappend
 PROMPT_COMMAND='history -a'
 
 #vim as manpager
-export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
+export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -c 'map q :q<CR>' -\""
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
