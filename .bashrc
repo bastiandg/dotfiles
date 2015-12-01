@@ -151,20 +151,20 @@ lighten () {
     echo "$(LANG=C printf '%.0f' "$(calc "scale=0; $1 + (255 - $1) * $2")")"
 }
 
-md5="$(hostname -f | md5sum | cut -d" " -f1)"
+hash="$(hostname -f | sha512sum | cut -d" " -f1)"
 threshold="80"
 fac="0.1"
 pos="0"
 r1="0" g1="0" b1="0" r2="0" g2="0" b2="0"
 while [ \( \( $r1 -le $threshold -a $g1 -le $threshold -a $b1 -le $threshold \) \
     -o \( $r2 -le $threshold -a $g2 -le $threshold -a $b2 -le $threshold \) \) \
-    -a $pos -lt 20 ] ; do
-    r1="$((16#${md5:$pos:2}))"
-    r2="$((16#${md5:$((pos + 2)):2}))"
-    g1="$((16#${md5:$((pos + 4)):2}))"
-    g2="$((16#${md5:$((pos + 6)):2}))"
-    b1="$((16#${md5:$((pos + 8)):2}))"
-    b2="$((16#${md5:$((pos + 10)):2}))"
+    -a $pos -lt 120 ] ; do
+    r1="$((16#${hash:$pos:2}))"
+    r2="$((16#${hash:$((pos + 2)):2}))"
+    g1="$((16#${hash:$((pos + 4)):2}))"
+    g2="$((16#${hash:$((pos + 6)):2}))"
+    b1="$((16#${hash:$((pos + 8)):2}))"
+    b2="$((16#${hash:$((pos + 10)):2}))"
 
     r1=$(lighten $r1 $fac)
     r2=$(lighten $r2 $fac)
