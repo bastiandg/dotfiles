@@ -80,7 +80,13 @@ alias il='ip addr | grep inet | sed -e "s#\s*inet \([0-9.]*\).*\ \([a-z0-9]*\)#\
 
 #calculate
 calc () {
-	echo "$*" | bc -l
+	if [ "$(which bc )" ] ; then
+		echo "scale=0; $*" | bc -l
+	elif [ "$(which perl )" ] ; then
+		perl -E "say $*" 2> /dev/null
+	else
+		echo "please install either bc or perl" >&2
+	fi
 }
 
 #colourise
@@ -144,11 +150,11 @@ _PS1 ()
 	PRE+='~' NAME="${NAME#$HOME}" LENGTH=$[LENGTH-1];
 	((${#NAME}>$LENGTH)) && NAME="/...${NAME:$[${#NAME}-LENGTH+4]}";
 	echo "$PRE$NAME"
-    return $ret #save the returnvalue
+	return $ret #save the returnvalue
 }
 
 lighten () {
-    echo "$(LANG=C printf '%.0f' "$(calc "scale=0; $1 + (255 - $1) * $2")")"
+    echo "$(LANG=C printf '%.0f' "$(calc "$1 + (255 - $1) * $2")")"
 }
 
 hash="$(hostname -f | sha512sum | cut -d" " -f1)"
