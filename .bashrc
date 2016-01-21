@@ -67,7 +67,6 @@ alias mkdir='mkdir -p'
 alias df='df -h'
 alias vim='vim -X'
 alias v='vim'
-alias f='find . -iname'
 alias s='ssh'
 alias ducks='du -cksh * | sort -rh | head -11' # Lists folders and files sizes in the current folder
 alias abs='readlink -f' #shows the absolute path
@@ -77,6 +76,10 @@ alias cx="chmod +x"
 alias mtr="mtr -t" #curses and no X for mtr
 alias telnet="telnet -eq"
 alias il='ip addr | grep inet | sed -e "s#\s*inet \([0-9.]*\).*\ \([a-z0-9]*\)#\2 \1#g"'
+
+f () {
+   find . -iname "*${1}*"
+}
 
 #calculate
 calc () {
