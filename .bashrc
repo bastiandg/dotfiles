@@ -76,6 +76,7 @@ alias cx="chmod +x"
 alias mtr="mtr -t" #curses and no X for mtr
 alias telnet="telnet -eq"
 alias il='ip addr | grep inet | sed -e "s#\s*inet \([0-9.]*\).*\ \([a-z0-9]*\)#\2 \1#g"'
+alias txt='vim -c "set wrap linebreak nolist nonumber noshowmode noruler laststatus=0 noshowcmd"' # for reading texts
 
 f () {
    find . -iname "*${1}*"
