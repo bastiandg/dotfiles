@@ -82,15 +82,24 @@ f () {
 }
 
 #calculate
-calc () {
-	if [ "$(which bc )" ] ; then
-		echo "scale=0; $*" | bc -l
-	elif [ "$(which perl )" ] ; then
+if [ "$(which bc )" ] ; then
+	calc () {
+		bc -l <<< "scale=0; $*"
+	}
+elif [ "$(which python )" ] ; then
+	calc () {
+		python -c "print $*" 2> /dev/null
+	}
+elif [ "$(which perl )" ] ; then
+	calc () {
 		perl -E "say $*" 2> /dev/null
-	else
-		echo "please install either bc or perl" >&2
-	fi
-}
+	}
+else
+	echo "please install either bc or perl" >&2
+	calc () {
+		echo "1"
+	}
+fi
 
 #colourise
 if [ -e /usr/bin/grc ]
