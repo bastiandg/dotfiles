@@ -246,8 +246,9 @@ function update_dotfiles() {
 			else
 				git clone https://github.com/bastiandg/dotfiles.git ~/dotfiles
 			fi
+			(cd ~/dotfiles && git submodule init && git submodule update )
 		else
-			(cd ~/dotfiles/ && git pull)
+			(cd ~/dotfiles/ && git pull && git submodule init && git submodule update )
 		fi
 		cp -r ~/dotfiles/.bashrc ~/.bashrc
 		rm -rf ~/.vim/ ~/.vimrc
@@ -322,13 +323,15 @@ function start_agent {
     /usr/bin/ssh-add;
 }
 
-# Source SSH settings, if applicable
-if [ -f "${SSH_ENV}" ]; then
-    . "${SSH_ENV}" > /dev/null
-    #ps ${SSH_AGENT_PID} doesn't work under cywgin
-    ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
-        start_agent;
-    }
-else
-    start_agent;
+if [ -d "$HOME/.ssh" ] ; then
+   # Source SSH settings, if applicable
+   if [ -f "${SSH_ENV}" ]; then
+       . "${SSH_ENV}" > /dev/null
+       #ps ${SSH_AGENT_PID} doesn't work under cywgin
+       ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+           start_agent;
+       }
+   else
+       start_agent;
+   fi
 fi
