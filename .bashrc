@@ -77,8 +77,13 @@ alias mtr="mtr -t" #curses and no X for mtr
 alias il='ip addr | grep inet | sed -e "s#\s*inet \([0-9.]*\).*\ \([a-z0-9]*\)#\2 \1#g"'
 alias txt='vim -c "set wrap linebreak nolist nonumber noshowmode noruler laststatus=0 noshowcmd"' # for reading texts
 
+
 f () {
    find . -iname "*${1}*"
+}
+
+se () {
+  grep "$1" "$HOME/.ssh/config" | cut -d " " -f 2
 }
 
 #calculate
@@ -300,6 +305,42 @@ extract() {
      else
          echo "'$1' is not a valid file"
      fi
+}
+
+#update all git repos
+ug() {
+CURRENTDIR="$(pwd)"
+GITDIRECTORIES="$(ls -d "$HOME/"*git)"
+MAXTHREADCOUNT=10
+
+for GITDIRECTORY in $GITDIRECTORIES ; do
+    for repo in $(ls -1 "$GITDIRECTORY/"); do
+        while [ "$(jobs | wc -l)" -ge "$MAXTHREADCOUNT" ] ; do
+            sleep 1
+        done
+        cd "$GITDIRECTORY/$repo"
+        git pull &
+        echo -e "\033[01;34m --- $repo pull started --- \033[00m"
+    done
+done
+wait
+cd "$CURRENTDIR"
+}
+
+# https://unix.stackexchange.com/a/4220
+make-completion-wrapper () {
+  local function_name="$2"
+  local arg_count=$(($#-3))
+  local comp_function_name="$1"
+  shift 2
+  local function="
+    function $function_name {
+      ((COMP_CWORD+=$arg_count))
+      COMP_WORDS=( "$@" \${COMP_WORDS[@]:1} )
+      "$comp_function_name"
+      return 0
+    }"
+  eval "$function"
 }
 
 # enable programmable completion features
