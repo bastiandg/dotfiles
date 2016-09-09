@@ -258,6 +258,8 @@ function update_dotfiles() {
 			(cd ~/dotfiles/ && git pull && git submodule init && git submodule update )
 		fi
 		cp -r ~/dotfiles/.bashrc ~/.bashrc
+		rm -rf ~/.bash_functions.d
+		cp -r ~/dotfiles/.bash_functions.d ~/.bash_functions.d
 		rm -rf ~/.vim/ ~/.vimrc
 		cp -r ~/dotfiles/.vimrc ~/.vimrc
 		cp -r ~/dotfiles/.vim ~/.vim
