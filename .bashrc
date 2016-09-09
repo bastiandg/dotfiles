@@ -76,6 +76,8 @@ alias cx="chmod +x"
 alias mtr="mtr -t" #curses and no X for mtr
 alias il='ip addr | grep inet | sed -e "s#\s*inet \([0-9.]*\).*\ \([a-z0-9]*\)#\2 \1#g"'
 alias txt='vim -c "set wrap linebreak nolist nonumber noshowmode noruler laststatus=0 noshowcmd"' # for reading texts
+alias cl='crontab -l'
+alias ce='crontab -e'
 
 
 f () {
@@ -350,6 +352,12 @@ fi
 
 if [ -e ~/.bashrc.local ] ; then
 	. ~/.bashrc.local
+fi
+
+if [ -d "$HOME/.bash_functions.d/" ] ; then
+	for source_file in $(find "$HOME/.bash_functions.d/" -type f) ; do
+		source "$source_file"
+	done
 fi
 
 # Set up ssh-agent
