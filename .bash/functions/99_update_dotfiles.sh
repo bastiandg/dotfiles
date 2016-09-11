@@ -3,9 +3,9 @@ update_dotfiles() {
 		if [ ! -e ~/dotfiles/ ] ; then
 			# use the ssh variant if it's me
 			if [ -e "$HOME/.ssh/id_rsa" -a \( "$USER" = "bastian" -o "$USER" = "bg" -o "$USER" = "bdegroot" \) ] ; then
-				git clone git@github.com:bastiandg/dotfiles.git "$HOME/dotfiles"
+				git clone --recursive git@github.com:bastiandg/dotfiles.git "$HOME/dotfiles"
 			else
-				git clone https://github.com/bastiandg/dotfiles.git "$HOME/dotfiles"
+				git clone --recursive https://github.com/bastiandg/dotfiles.git "$HOME/dotfiles"
 			fi
 			(cd "$HOME/dotfiles" && git submodule init && git submodule update )
 		else
@@ -20,6 +20,7 @@ update_dotfiles() {
 	else
 		echo "git is not installed"
 	fi
+	source "$HOME/.bashrc"
 }
 
 

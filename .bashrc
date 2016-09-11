@@ -6,8 +6,8 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     source /etc/bash_completion
 fi
 
-# source options aliases and functions
-SECTIONS="options aliases functions"
+# source options aliases completions and functions
+SECTIONS="options aliases completions functions"
 for section in $SECTIONS ; do
 	if [ -d "$HOME/.bash/$section" ] ; then
 		for source_file in $(find "$HOME/.bash/$section" -type f -iname "*.sh" | sort) ; do
