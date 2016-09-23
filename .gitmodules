@@ -1,6 +1,3 @@
-[submodule ".vim/bundle/rainbow"]
-	path = .vim/bundle/rainbow
-	url = https://github.com/luochen1990/rainbow.git
 [submodule ".vim/bundle/vim-cute-python"]
 	path = .vim/bundle/vim-cute-python
 	url = https://github.com/ehamberg/vim-cute-python.git
@@ -37,3 +34,9 @@
 [submodule ".bash/completions/vault-bash-completion"]
 	path = .bash/completions/vault-bash-completion
 	url = https://github.com/iljaweis/vault-bash-completion.git
+[submodule ".vim/bundle/vim-puppet"]
+	path = .vim/bundle/vim-puppet
+	url = git://github.com/voxpupuli/vim-puppet.git
+[submodule ".vim/bundle/rainbow_parentheses.vim"]
+	path = .vim/bundle/rainbow_parentheses.vim
+	url = https://github.com/junegunn/rainbow_parentheses.vim.git
