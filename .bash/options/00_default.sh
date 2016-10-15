@@ -1,6 +1,5 @@
 #vim the one and only
 export EDITOR=/usr/bin/vim
-export CDPATH=.:~
 
 # colorful manpages
 export GREP_OPTIONS='--color=auto'
