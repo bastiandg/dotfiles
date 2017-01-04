@@ -35,6 +35,7 @@ alias "vu"="vagrant up"
 alias "vp"="vagrant provision"
 alias "vs"="vagrant ssh --command 'sudo -i'"
 alias "vd"="vagrant destroy"
+alias "vgs"="vagrant global-status"
 
 make-completion-wrapper _vagrant _vagrant_up vagrant up
 complete -F _vagrant_up vu

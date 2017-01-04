@@ -20,7 +20,6 @@ mcd () {
 
 # Handy Extract Program
 extract() {
-
      if [ -f $1 ] ; then
          case $1 in
              *.tar.bz2)   tar xvjf $1     ;;
@@ -43,22 +42,22 @@ extract() {
 
 #update all git repos
 ug() {
-CURRENTDIR="$(pwd)"
-GITDIRECTORIES="$(ls -d "$HOME/"*git)"
-MAXTHREADCOUNT=10
+    CURRENTDIR="$(pwd)"
+    GITDIRECTORIES="$(ls -d "$HOME/"*git)"
+    MAXTHREADCOUNT=10
 
-for GITDIRECTORY in $GITDIRECTORIES ; do
-    for repo in $(ls -1 "$GITDIRECTORY/"); do
-        while [ "$(jobs | wc -l)" -ge "$MAXTHREADCOUNT" ] ; do
-            sleep 1
+    for GITDIRECTORY in $GITDIRECTORIES ; do
+        for repo in $(ls -1 "$GITDIRECTORY/"); do
+            while [ "$(jobs | wc -l)" -ge "$MAXTHREADCOUNT" ] ; do
+                sleep 1
+            done
+            cd "$GITDIRECTORY/$repo"
+            git pull &
+            echo -e "\033[01;34m --- $repo pull started --- \033[00m"
         done
-        cd "$GITDIRECTORY/$repo"
-        git pull &
-        echo -e "\033[01;34m --- $repo pull started --- \033[00m"
     done
-done
-wait
-cd "$CURRENTDIR"
+    wait
+    cd "$CURRENTDIR"
 }
 
 # https://unix.stackexchange.com/a/4220
@@ -78,13 +77,16 @@ make-completion-wrapper () {
 }
 
 f () {
-   find . -iname "*${1}*"
+    find . -iname "*${1}*"
 }
 
 se () {
-  grep "$1" "$HOME/.ssh/config" | cut -d " " -f 2
+    grep "$1" "$HOME/.ssh/config" | cut -d " " -f 2
 }
 
+grin () {
+    grep -rin --color=always "$1" *
+}
 
 #calculate
 if [ "$(which bc )" ] ; then
