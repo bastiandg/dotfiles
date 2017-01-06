@@ -1,4 +1,4 @@
-update_dotfiles() {
+function update_dotfiles() {
 	if [ "$(which git)" ]; then
 		if [ ! -e ~/dotfiles/ ] ; then
 			# use the ssh variant if it's me

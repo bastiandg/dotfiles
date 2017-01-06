@@ -14,12 +14,12 @@ function psg () {
 
 
 #make a directory and change to it
-mcd () {
+function mcd () {
 	mkdir "$@" && cd "${!#}"
 }
 
 # Handy Extract Program
-extract() {
+function extract() {
      if [ -f $1 ] ; then
          case $1 in
              *.tar.bz2)   tar xvjf $1     ;;
@@ -41,7 +41,7 @@ extract() {
 }
 
 #update all git repos
-ug() {
+function ug() {
     CURRENTDIR="$(pwd)"
     GITDIRECTORIES="$(ls -d "$HOME/"*git)"
     MAXTHREADCOUNT=10
@@ -76,34 +76,34 @@ make-completion-wrapper () {
   eval "$function"
 }
 
-f () {
+function f () {
     find . -iname "*${1}*"
 }
 
-se () {
+function se () {
     grep "$1" "$HOME/.ssh/config" | cut -d " " -f 2
 }
 
-grin () {
+function grin () {
     grep -rin --color=always "$1" *
 }
 
 #calculate
 if [ "$(which bc )" ] ; then
-	calc () {
+	function calc () {
 		bc -l <<< "scale=0; $*"
 	}
 elif [ "$(which python )" ] ; then
-	calc () {
+	function calc () {
 		python -c "print $*" 2> /dev/null
 	}
 elif [ "$(which perl )" ] ; then
-	calc () {
+	function calc () {
 		perl -E "say $*" 2> /dev/null
 	}
 else
 	echo "please install either bc or perl" >&2
-	calc () {
+	function calc () {
 		echo "1"
 	}
 fi

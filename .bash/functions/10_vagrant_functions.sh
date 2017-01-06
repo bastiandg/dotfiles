@@ -1,4 +1,4 @@
-vl () {
+function vl () {
     vagrant_state_file="$(__vagrantinvestigate)" || return 1
     if [ -d "$vagrant_state_file" ] ; then
         if [ "$1" ] ; then
@@ -22,7 +22,7 @@ vl () {
     echo -e "$vmlist" | sort -k2r | column -t
 }
 
-vda () {
+function vda () {
     vagrant global-status
     echo "kill the all vagrant machines (y/N)?"
     read vkillall

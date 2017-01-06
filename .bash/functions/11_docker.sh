@@ -1,8 +1,8 @@
-dx () {
+function dx () {
 	docker exec -ti $1 /bin/bash
 }
 
-dps () {
+function dps () {
 	if [ "$1" ] ; then
 		docker ps | grep -i "$1"
 	else
@@ -10,7 +10,7 @@ dps () {
 	fi
 }
 
-di () {
+function di () {
 	if [ "$1" ] ; then
 		docker images | grep -i "$1"
 	else
