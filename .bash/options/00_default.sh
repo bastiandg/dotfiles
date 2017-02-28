@@ -2,7 +2,6 @@
 export EDITOR=/usr/bin/vim
 
 # colorful manpages
-export GREP_OPTIONS='--color=auto'
 export LESS_TERMCAP_mb=$'\E[01;31m'
 export LESS_TERMCAP_md=$'\E[01;36m'
 export LESS_TERMCAP_me=$'\E[0m'

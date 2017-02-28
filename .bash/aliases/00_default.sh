@@ -13,6 +13,7 @@ alias cp='cp -vr'
 alias mv='mv -v'
 alias rm='rm -v'
 alias du='du -ch'
+alias grep="grep --color=auto"
 alias clip='xclip -selection clipboard'
 alias ..='cd ..'
 alias ...='cd ../..'
