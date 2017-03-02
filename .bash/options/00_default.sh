@@ -26,8 +26,11 @@ export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
+# history search with the arrow keys
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
 bind '"\eOC":forward-word'
 bind '"\eOD":backward-word'
+
+export LANG=C
 
