@@ -45,12 +45,12 @@ while [ \( \( $r1 -le $threshold -a $g1 -le $threshold -a $b1 -le $threshold \) 
 done
 
 #Command Number
-CMDNR="\!"
+#CMDNR="\!"
 #User
 U="\[\033[38;2;$r1;$g1;${b1}m\]\u\[\033[00m\]"
 
 #Host
-H="\[\033[38;2;$r2;$g2;${b2}m\]\h\[\033[00m\]"
+H="\[\033[38;2;$r2;$g2;${b2}m\]$(hostname --fqdn)\[\033[00m\]"
 
 #Directory
 DIR="\[\033[01;34m\]"'$(_PS1 "$PWD" 50)'"\[\033[00m\]"
@@ -63,4 +63,4 @@ RETURN="\$(ret=\$?; if [[ \$ret = 0 ]];then echo \"\[\033[01;32m\]✓\";else ech
 #
 
 #the actual prompt with a colorised return code
-PS1="$DATE - $DIR$ROOT\n$CMDNR $U@$H $RETURN \$ " #schnell
+PS1="$DATE - $DIR$ROOT\n$U@$H $RETURN \$ " #schnell
