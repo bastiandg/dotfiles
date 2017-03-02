@@ -20,10 +20,10 @@ hi IndentGuidesOdd  ctermbg=black ctermfg=237
 hi IndentGuidesEven ctermbg=233 ctermfg=239
 let g:pydiction_location = "$HOME/.vim/dicts/complete-dict"
 if has('nvim')
-  set termguicolors
   let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 endif
 set enc=utf-8
+set termguicolors
 
 if exists("+undofile")
 	set udf
