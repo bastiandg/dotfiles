@@ -38,6 +38,7 @@ alias il='ip addr | grep inet | sed -e "s#\s*inet \([0-9.]*\).*\ \([a-z0-9]*\)#\
 alias txt='vim -c "set wrap linebreak nolist nonumber noshowmode noruler laststatus=0 noshowcmd"' # for reading texts
 alias cl='crontab -l'
 alias ce='crontab -e'
+alias pycalc="python -i -c \"from math import *; import readline; import rlcompleter; readline.parse_and_bind('tab: complete')\""
 
 
 #colourise
