@@ -27,7 +27,6 @@ alias mkdir='mkdir -p'
 alias df='df -h'
 alias vim='vim -X'
 alias v='vim'
-alias s='ssh'
 alias ducks='du -cksh * | sort -rh | head -11' # Lists folders and files sizes in the current folder
 alias abs='readlink -f' #shows the absolute path
 alias sx="screen -x"
