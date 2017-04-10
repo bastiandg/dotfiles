@@ -31,6 +31,7 @@ bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
 bind '"\eOC":forward-word'
 bind '"\eOD":backward-word'
+bind 'set completion-ignore-case on'
 
 export LANG=en_US.UTF-8
 
