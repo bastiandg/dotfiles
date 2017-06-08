@@ -17,6 +17,7 @@ alias grep="grep --color=auto"
 alias clip='xclip -selection clipboard'
 alias ..='cd ..'
 alias ...='cd ../..'
+alias ....='cd ../../..'
 alias hg='history | grep -i'
 alias diff="diff -u"
 alias utop='top -u "$USER"'
