@@ -1,5 +1,4 @@
 call plug#begin('~/.vim/plugged')
-Plug 'tomasr/molokai'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'nathanaelkane/vim-indent-guides'
@@ -8,6 +7,11 @@ Plug 'ekalinin/Dockerfile.vim'
 Plug 'luochen1990/rainbow'
 Plug 'plasticboy/vim-markdown'
 Plug 'vim-syntastic/syntastic'
+
+" colorschemes
+Plug 'tomasr/molokai'
+Plug 'lisposter/vim-blackboard'
+Plug 'dracula/vim'
 call plug#end()
 
 " rainbow parantheses config
@@ -70,7 +74,7 @@ set history=10000
 set showmode
 set hlsearch "highlight search results
 set number "line numbers
-set so=10 "scroll offset
+set so=100 "scroll offset
 set incsearch
 
 inoremap <c-o> <c-x><c-o>
@@ -229,7 +233,7 @@ vnoremap <silent> # :<C-U>
 	\escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
 	\gV:call setreg('"', old_reg, old_regtype)<CR>
 
-colorscheme molokai
+colorscheme blackboard
 hi Normal ctermbg=Black ctermfg=White guifg=White guibg=Black
 
 set cursorline
