@@ -200,7 +200,7 @@ au InsertLeave * hi StatColor guibg=#95e454 guifg=black ctermbg=lightgreen cterm
 set list                 " list nonprintable characters
 set listchars+=precedes:<,extends:> " display the following nonprintable characters
 if $LANG =~ ".*\.UTF-8$" || $LANG =~ ".*utf8$" || $LANG =~ ".*utf-8$"
-	set listchars=tab:»\ ,trail:\ ,precedes:»,extends:…,eol:¬
+	set listchars=tab:»\ ,trail:\ ,precedes:»,extends:…,eol:¬,nbsp:␣
 else
 	set listchars=tab:>\ ,trail:-
 endif
