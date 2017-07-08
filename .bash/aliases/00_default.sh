@@ -39,6 +39,7 @@ alias txt='vim -c "set wrap linebreak nolist nonumber noshowmode noruler laststa
 alias cl='crontab -l'
 alias ce='crontab -e'
 alias pycalc="python -i -c \"from math import *; import readline; import rlcompleter; readline.parse_and_bind('tab: complete')\""
+alias gu='git pull && git submodule update --init --recursive'
 
 
 #colourise
