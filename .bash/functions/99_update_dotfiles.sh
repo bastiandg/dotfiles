@@ -7,9 +7,8 @@ function update_dotfiles() {
 			else
 				git clone --recursive https://github.com/bastiandg/dotfiles.git "$HOME/dotfiles"
 			fi
-			(cd "$HOME/dotfiles" && git submodule init && git submodule update )
 		else
-			(cd "$HOME/dotfiles/" && git pull && git submodule init && git submodule update )
+			(cd "$HOME/dotfiles/" && gu )
 		fi
 		cp -r "$HOME/dotfiles/.bashrc" "$HOME/.bashrc"
 		rm -rf "$HOME/.bash"
@@ -17,6 +16,7 @@ function update_dotfiles() {
 		rm -rf "$HOME/.vim/" "$HOME/.vimrc"
 		cp -r "$HOME/dotfiles/.vimrc" "$HOME/.vimrc"
 		cp -r "$HOME/dotfiles/.vim" "$HOME/.vim"
+		vim +PlugInstall +qall
 	else
 		echo "git is not installed"
 	fi
