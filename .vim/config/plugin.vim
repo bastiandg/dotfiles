@@ -9,13 +9,18 @@ Plug 'plasticboy/vim-markdown'
 Plug 'vim-syntastic/syntastic'
 Plug 'terryma/vim-expand-region'
 Plug 'vim-scripts/YankRing.vim'
+Plug 'vim-airline/vim-airline'
+
+" completion
+Plug 'Shougo/deoplete.nvim'
+Plug 'zchee/deoplete-jedi'
+Plug 'Shougo/neco-syntax'
 
 " colorschemes
 Plug 'tomasr/molokai'
 Plug 'lisposter/vim-blackboard'
 Plug 'dracula/vim'
 Plug 'cseelus/vim-colors-lucid'
-Plug 'vim-airline/vim-airline'
 call plug#end()
 
 " rainbow parantheses config
@@ -43,3 +48,7 @@ vmap <C-v> <Plug>(expand_region_shrink)
 
 " airline powerline symbols
 let g:airline_powerline_fonts = 1
+
+" deoplete
+let g:deoplete#enable_at_startup = 1
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
