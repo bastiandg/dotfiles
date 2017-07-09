@@ -1,3 +1,6 @@
+if has('nvim')
+	source ~/.vim/autoload/plug.vim
+endif
 source ~/.vim/config/plugin.vim
 source ~/.vim/config/extrawhitespace.vim
 source ~/.vim/config/preserve.vim
