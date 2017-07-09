@@ -15,6 +15,7 @@ Plug 'tomasr/molokai'
 Plug 'lisposter/vim-blackboard'
 Plug 'dracula/vim'
 Plug 'cseelus/vim-colors-lucid'
+Plug 'vim-airline/vim-airline'
 call plug#end()
 
 " rainbow parantheses config
@@ -31,10 +32,14 @@ let g:vim_markdown_folding_disabled = 1
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=Black   guifg=White
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#272822 guifg=#F8F8F2
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guifg=#82848d guibg=#0c1021
 
 " syntastic
 let g:syntastic_python_flake8_args = "--ignore=W191"
 
+" expand region
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
+
+" airline powerline symbols
+let g:airline_powerline_fonts = 1
