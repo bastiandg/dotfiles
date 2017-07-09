@@ -50,7 +50,7 @@ autocmd BufReadPost *
 			\   exe "normal! g`\"" |
 			\ endif
 
-colorscheme blackboard
+silent! colorscheme blackboard
 hi Normal ctermbg=Black ctermfg=White guifg=White guibg=Black
 set guifont=Source\ Code\ Pro\ 14
 set cursorline
