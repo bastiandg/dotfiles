@@ -18,14 +18,14 @@ nnoremap <CR> G
 nnoremap <BS> gg
 
 "Split Window movement
-inoremap <S-h> <C-\><C-N><C-w>h
-inoremap <S-j> <C-\><C-N><C-w>j
-inoremap <S-k> <C-\><C-N><C-w>k
-inoremap <S-l> <C-\><C-N><C-w>l
-nnoremap <S-h> <C-w>h
-nnoremap <S-j> <C-w>j
-nnoremap <S-k> <C-w>k
-nnoremap <S-l> <C-w>l
+inoremap <C-h> <C-\><C-N><C-w>h
+inoremap <C-j> <C-\><C-N><C-w>j
+inoremap <C-k> <C-\><C-N><C-w>k
+inoremap <C-l> <C-\><C-N><C-w>l
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 inoremap jj <ESC>
 nnoremap ; :
 "movement keys
@@ -80,8 +80,8 @@ nnoremap U <C-r>
 
 if has('nvim')
 	tnoremap <Esc> <C-\><C-n>
-	tnoremap <S-h> <C-\><C-N><C-w>h
-	tnoremap <S-j> <C-\><C-N><C-w>j
-	tnoremap <S-k> <C-\><C-N><C-w>k
-	tnoremap <S-l> <C-\><C-N><C-w>l
+	tnoremap <C-h> <C-\><C-N><C-w>h
+	tnoremap <C-j> <C-\><C-N><C-w>j
+	tnoremap <C-k> <C-\><C-N><C-w>k
+	tnoremap <C-l> <C-\><C-N><C-w>l
 endif
