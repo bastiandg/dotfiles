@@ -31,11 +31,12 @@ function vda () {
     fi
 }
 
-alias "vu"="vagrant up"
-alias "vp"="vagrant provision"
-alias "vs"="vagrant ssh --command 'sudo -i'"
-alias "vd"="vagrant destroy"
-alias "vgs"="vagrant global-status"
+alias vu="vagrant up"
+alias vp="vagrant provision"
+alias vs="vagrant ssh --command 'sudo -i'"
+alias vd="vagrant destroy"
+alias vgs="vagrant global-status"
+alias vpa="vagrant provision --provision-with=ansible"
 
 make-completion-wrapper _vagrant _vagrant_up vagrant up
 complete -F _vagrant_up vu
@@ -45,6 +46,9 @@ complete -F _vagrant_up vd
 
 make-completion-wrapper _vagrant _vagrant_provision vagrant provision
 complete -F _vagrant_provision vp
+
+make-completion-wrapper _vagrant _vagrant_provision vagrant provision
+complete -F _vagrant_provision vpa
 
 make-completion-wrapper _vagrant _vagrant_ssh vagrant ssh
 complete -F _vagrant_ssh vs
