@@ -3,13 +3,15 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'tpope/vim-sleuth'
-Plug 'ekalinin/Dockerfile.vim'
 Plug 'luochen1990/rainbow'
 Plug 'plasticboy/vim-markdown'
 Plug 'vim-syntastic/syntastic'
 Plug 'terryma/vim-expand-region'
 Plug 'vim-scripts/YankRing.vim'
 Plug 'vim-airline/vim-airline'
+
+Plug 'ekalinin/Dockerfile.vim'
+Plug 'hashivim/vim-vagrant'
 
 " completion
 Plug 'Shougo/deoplete.nvim'
