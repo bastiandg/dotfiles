@@ -4,6 +4,10 @@ if [ -x /usr/bin/dircolors ]; then
     alias ls='ls -F --color=auto'
 fi
 
+if [ -e /usr/bin/ag ] ; then
+    alias ag="ag --color-match='1;31' --color-line='1;32' --color-path='35'"
+fi
+
 # aliases
 alias ll='ls -l'
 alias la='ls -la'
