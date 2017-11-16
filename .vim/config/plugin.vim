@@ -4,14 +4,16 @@ Plug 'scrooloose/nerdtree'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'tpope/vim-sleuth'
 Plug 'luochen1990/rainbow'
-Plug 'plasticboy/vim-markdown'
 Plug 'vim-syntastic/syntastic'
 Plug 'terryma/vim-expand-region'
 Plug 'vim-scripts/YankRing.vim'
 Plug 'vim-airline/vim-airline'
 
+" Language plugins
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'hashivim/vim-vagrant'
+Plug 'rodjek/vim-puppet'
+Plug 'plasticboy/vim-markdown'
 
 " completion
 Plug 'Shougo/deoplete.nvim'
