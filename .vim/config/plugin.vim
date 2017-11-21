@@ -36,6 +36,8 @@ let g:rainbow_conf = {
 
 " disable auto markdown folding
 let g:vim_markdown_folding_disabled = 1
+" disable auto markdown folding
+let g:vim_markdown_conceal = 0
 
 " highlight indentation levels
 let g:indent_guides_enable_on_vim_startup = 1
