@@ -44,6 +44,7 @@ alias cl='crontab -l'
 alias ce='crontab -e'
 alias pycalc="python -i -c \"from math import *; import readline; import rlcompleter; readline.parse_and_bind('tab: complete')\""
 alias gu='git pull && git submodule update --init --recursive'
+alias g1="git diff HEAD~1"
 alias -- -='cd -'
 
 
