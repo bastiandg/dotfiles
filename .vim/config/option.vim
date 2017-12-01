@@ -57,3 +57,4 @@ set cursorline
 "
 "underline the current line
 hi CursorLine cterm=NONE,underline
+let g:pydiction_location="$HOME/.vim/after/ftplugin/python_pydiction.vim"
