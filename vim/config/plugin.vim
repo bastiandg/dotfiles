@@ -24,9 +24,7 @@ Plug 'Shougo/neco-syntax'
 
 " colorschemes
 Plug 'tomasr/molokai'
-Plug 'lisposter/vim-blackboard'
-Plug 'dracula/vim'
-Plug 'cseelus/vim-colors-lucid'
+Plug 'junegunn/seoul256.vim'
 call plug#end()
 
 " rainbow parantheses config
