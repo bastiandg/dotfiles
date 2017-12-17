@@ -1,6 +1,0 @@
-[submodule ".bash/completions/vault-bash-completion"]
-	path = .bash/completions/vault-bash-completion
-	url = https://github.com/iljaweis/vault-bash-completion.git
-[submodule ".vim/autoload"]
-	path = .vim/autoload
-	url = https://github.com/junegunn/vim-plug

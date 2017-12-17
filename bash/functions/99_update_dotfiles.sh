@@ -10,12 +10,13 @@ function update_dotfiles() {
 		else
 			(cd "$HOME/dotfiles/" && gu )
 		fi
-		cp -r "$HOME/dotfiles/.bashrc" "$HOME/.bashrc"
+		cp -r "$HOME/dotfiles/bashrc" "$HOME/.bashrc"
 		rm -rf "$HOME/.bash"
-		cp -r "$HOME/dotfiles/.bash" "$HOME/.bash"
-		rm -rf "$HOME/.vim/" "$HOME/.vimrc"
-		cp -r "$HOME/dotfiles/.vimrc" "$HOME/.vimrc"
-		cp -r "$HOME/dotfiles/.vim" "$HOME/.vim"
+		cp -r "$HOME/dotfiles/bash" "$HOME/.bash"
+		rm -rf "$HOME/.vim/" "$HOME/.vimrc" "$HOME/.config/nvim"
+		ln -s "$HOME/.vim/init.vim" "$HOME/.vimrc"
+		cp -r "$HOME/dotfiles/vim" "$HOME/.vim"
+		ln -s "$HOME/.vim" "$HOME/.config/nvim"
 		vim +PlugInstall +qall
 	else
 		echo "git is not installed"
