@@ -8,6 +8,8 @@ Plug 'vim-syntastic/syntastic'
 Plug 'terryma/vim-expand-region'
 Plug 'vim-scripts/YankRing.vim'
 Plug 'vim-airline/vim-airline'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
 
 " Language plugins
 Plug 'ekalinin/Dockerfile.vim'
@@ -58,3 +60,7 @@ let g:airline_powerline_fonts = 1
 " deoplete
 let g:deoplete#enable_at_startup = 1
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+
+" activate limelight with goyo
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
