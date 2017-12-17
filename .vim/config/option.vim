@@ -1,6 +1,3 @@
-if has('nvim')
-	set guicursor=
-endif
 set enc=utf-8
 set termguicolors
 
