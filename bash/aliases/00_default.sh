@@ -46,7 +46,9 @@ alias pycalc="python -i -c \"from math import *; import readline; import rlcompl
 alias gu='git pull && git submodule update --init --recursive'
 alias g1="git diff HEAD~1"
 alias -- -='cd -'
-alias text='vim -u ~/.vim/mail.vim +Goyo'
+alias text='NVIM_TUI_ENABLE_TRUE_COLOR=0 vim -u ~/.vim/mail.vim +Goyo'
+alias gc="gcloud"
+alias kc="kubectl"
 
 
 #colourise
