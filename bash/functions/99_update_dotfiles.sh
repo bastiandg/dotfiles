@@ -13,11 +13,14 @@ function update_dotfiles() {
 		cp -r "$HOME/dotfiles/bashrc" "$HOME/.bashrc"
 		rm -rf "$HOME/.bash"
 		cp -r "$HOME/dotfiles/bash" "$HOME/.bash"
+		rm "$HOME/.bash/completions/vault-bash-completion/run-tests.sh" # TODO shitty workaround
 		rm -rf "$HOME/.vim/" "$HOME/.vimrc" "$HOME/.config/nvim"
 		ln -s "$HOME/.vim/init.vim" "$HOME/.vimrc"
 		cp -r "$HOME/dotfiles/vim" "$HOME/.vim"
 		ln -s "$HOME/.vim" "$HOME/.config/nvim"
 		vim +PlugInstall +qall
+		pip3 install --upgrade neovim
+		vim +UpdateRemotePlugins +qall
 	else
 		echo "git is not installed"
 	fi

@@ -16,6 +16,7 @@ Plug 'ekalinin/Dockerfile.vim'
 Plug 'hashivim/vim-vagrant'
 Plug 'rodjek/vim-puppet'
 Plug 'plasticboy/vim-markdown'
+Plug 'hashivim/vim-terraform'
 
 " completion
 Plug 'Shougo/deoplete.nvim'
