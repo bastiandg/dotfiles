@@ -17,11 +17,13 @@ Plug 'hashivim/vim-vagrant'
 Plug 'rodjek/vim-puppet'
 Plug 'plasticboy/vim-markdown'
 Plug 'hashivim/vim-terraform'
+Plug 'fatih/vim-go'
 
 " completion
 Plug 'Shougo/deoplete.nvim'
 Plug 'zchee/deoplete-jedi'
 Plug 'Shougo/neco-syntax'
+Plug 'zchee/deoplete-go', { 'do': 'make'}
 
 " colorschemes
 Plug 'tomasr/molokai'
