@@ -18,6 +18,11 @@ then
 	export PATH="$HOME/scripts:$PATH"
 fi
 
+if [ -d "$HOME/go/bin" ]
+then
+	export PATH="$PATH:$HOME/go/bin"
+fi
+
 
 #vim as manpager
 export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -c 'map q :q<CR>' -\""
