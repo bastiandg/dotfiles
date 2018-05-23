@@ -20,7 +20,7 @@ pd() {
     kubectl describe pod "$pod_id" --namespace "$pod_ns"
 }
 
-pe() {
+px() {
     if [ -z "$1" ] ; then
         echo "pattern missing" >&2
         return 1
