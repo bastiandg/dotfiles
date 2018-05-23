@@ -88,6 +88,17 @@ function grin () {
     grep -rin --color=always "$1" *
 }
 
+function tp () {
+  if echo "$1" | grep -q ":" ; then
+    echo "$1 h $h p $p"
+    h="$(echo "$1" | cut -d ":" -f 1 )"
+    p="$(echo "$1" | cut -d ":" -f 2 )"
+    echo "q" | telnet -eq "$h" "$p"
+  else
+    echo "q" | telnet -eq "$1" "$2"
+  fi
+}
+
 #calculate
 if [ "$(which bc )" ] ; then
 	function calc () {
@@ -107,3 +118,4 @@ else
 		echo "1"
 	}
 fi
+

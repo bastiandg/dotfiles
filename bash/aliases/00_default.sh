@@ -9,6 +9,7 @@ if [ -e /usr/bin/ag ] ; then
 fi
 
 # aliases
+alias watch='watch '
 alias ll='ls -l'
 alias la='ls -la'
 alias lla='ls -la'

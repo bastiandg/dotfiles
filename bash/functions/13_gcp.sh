@@ -7,7 +7,7 @@ bl() {
 }
 
 bs() {
-        gcloud container builds log "$1" | less
+        gcloud container builds log --stream "$1"
 }
 
 # initialize kubernetes with google cloud cluster credentials
@@ -25,6 +25,21 @@ kcc() {
                         --project "$project"
         else
                 echo "cluster $1 not found" >&2
+                return 3
+        fi
+}
+
+# set gcloud project
+gcp() {
+        if [ -z "$1" ] ; then
+                return 2
+        fi
+        project_list="$(gcloud projects list --format="value(project_id, name)" | grep -i "$1" -m 1)"
+        if [ -n "$project_list" ] ; then
+                project_id="$(echo "$project_list" | awk '{print $1}')"
+                gcloud config set project "$project_id"
+        else
+                echo "project_id $1 not found" >&2
                 return 3
         fi
 }
