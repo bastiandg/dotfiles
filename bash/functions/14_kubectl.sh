@@ -28,5 +28,15 @@ px() {
     pod_line="$(kubectl get pods --all-namespaces | grep -i "$1" -m 1)"
     pod_id="$(echo "$pod_line" | awk '{print $2}')"
     pod_ns="$(echo "$pod_line" | awk '{print $1}')"
-    kubectl exec -it "$pod_id" --namespace "$pod_ns" -- /bin/bash
+    kubectl exec -it "$pod_id" --namespace "$pod_ns" -- /bin/sh
+}
+
+kp() {
+    token="$(kubectl config view -o jsonpath="{range .users[?(@.name == '$(kubectl config current-context)')]}{@.user.auth-provider.config.access-token}")"
+    echo "kubectl token: $token"
+    kubectl proxy &
+    PID="$!"
+    trap "kill $PID" SIGINT SIGTERM
+    xdg-open "http://localhost:8001/ui"
+    wait
 }
