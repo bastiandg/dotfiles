@@ -35,12 +35,20 @@ kp() {
     token="$(kubectl config view -o jsonpath="{range .users[?(@.name == '$(kubectl config current-context)')]}{@.user.auth-provider.config.access-token}")"
     if [ -n "$(which xclip)" ] ; then
         printf "%s" "$token" | xclip -selection primary
+    elif [[ "$OSTYPE" == "darwin"* ]] ; then
+        printf "%s" "$token" | pbcopy
     else
         echo "kubectl token: $token"
     fi
     kubectl proxy &
     PID="$!"
     trap "kill $PID" SIGINT SIGTERM
-    xdg-open "http://localhost:8001/ui"
+    if [[ "$OSTYPE" == "linux-gnu" ]] ; then
+        printf "%s" "$token" | xclip -selection primary
+        xdg-open "http://localhost:8001/ui"
+    elif [[ "$OSTYPE" == "darwin"* ]] ; then
+        printf "%s" "$token" | pbcopy
+        open "http://localhost:8001/ui"
+    fi
     wait
 }
