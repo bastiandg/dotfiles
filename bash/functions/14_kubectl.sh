@@ -33,7 +33,11 @@ px() {
 
 kp() {
     token="$(kubectl config view -o jsonpath="{range .users[?(@.name == '$(kubectl config current-context)')]}{@.user.auth-provider.config.access-token}")"
-    echo "kubectl token: $token"
+    if [ -n "$(which xclip)" ] ; then
+        printf "%s" "$token" | xclip -selection primary
+    else
+        echo "kubectl token: $token"
+    fi
     kubectl proxy &
     PID="$!"
     trap "kill $PID" SIGINT SIGTERM
