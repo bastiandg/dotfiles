@@ -13,16 +13,18 @@ export LESS=' -iR'
 export NVIM_TUI_ENABLE_TRUE_COLOR='1'
 
 #add my own scripts to the command list
-if [ -d "$HOME/scripts" ]
-then
+if [ -d "$HOME/scripts" ]; then
 	export PATH="$HOME/scripts:$PATH"
 fi
 
-if [ -d "$HOME/go/bin" ]
-then
+if [ -d "$HOME/go/bin" ] ; then
 	export PATH="$PATH:$HOME/go/bin"
 fi
 
+# depends on https://github.com/bastiandg/setup/blob/master/packages/diff-so-fancy.sh
+if [ -x "/opt/diff-so-fancy/diff-so-fancy" ] ; then
+	export GIT_PAGER="/opt/diff-so-fancy/diff-so-fancy | less --tabs=4 -RX"
+fi
 
 #vim as manpager
 export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -c 'map q :q<CR>' -\""

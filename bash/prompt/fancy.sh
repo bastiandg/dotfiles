@@ -1,5 +1,5 @@
 if [ "$(whoami)" == "root" ] ; then
-	ROOT="- \[\033[01;91m\]root!\[\033[00m\]"
+	ROOT=" - \[\033[01;91m\]root!\[\033[00m\]"
 else
 	ROOT=""
 fi
