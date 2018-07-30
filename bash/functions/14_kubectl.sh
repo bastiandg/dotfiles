@@ -17,7 +17,11 @@ pd() {
     pod_line="$(kubectl get pods --all-namespaces | grep -i "$1" -m 1)"
     pod_id="$(echo "$pod_line" | awk '{print $2}')"
     pod_ns="$(echo "$pod_line" | awk '{print $1}')"
-    kubectl describe pod "$pod_id" --namespace "$pod_ns"
+    if [ -n "$(which jq)" ] ; then
+        kubectl get pod "$pod_id" --namespace "$pod_ns" -o json | jq .
+    else
+        kubectl describe pod "$pod_id" --namespace "$pod_ns"
+    fi
 }
 
 px() {
