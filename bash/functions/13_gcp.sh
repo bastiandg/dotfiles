@@ -43,3 +43,13 @@ gcp() {
                 return 3
         fi
 }
+
+# list clusters
+gcl() {
+        cluster_list="$(gcloud container clusters list)"
+        if [ -n "$1" ] ; then
+                echo "$cluster_list" | grep "$1"
+        else
+                echo "$cluster_list"
+        fi
+}
