@@ -13,6 +13,7 @@ bs() {
 # initialize kubernetes with google cloud cluster credentials
 kcc() {
         if [ -z "$1" ] ; then
+                echo "kcc requires a pattern" >&2
                 return 2
         fi
         cluster_line="$(gcloud container clusters list --format="value(name, zone)" | grep "$1" -m 1)"
@@ -32,6 +33,7 @@ kcc() {
 # set gcloud project
 gcp() {
         if [ -z "$1" ] ; then
+                echo "gcp requires a pattern" >&2
                 return 2
         fi
         project_list="$(gcloud projects list --format="value(project_id, name)" | grep -i "$1" -m 1)"
@@ -51,5 +53,32 @@ gcl() {
                 echo "$cluster_list" | grep "$1"
         else
                 echo "$cluster_list"
+        fi
+}
+
+# list clusters
+gcd() {
+        if [ -z "$1" ] ; then
+                echo "gcd requires a pattern" >&2
+                return 2
+        fi
+        cluster_line="$(gcloud container clusters list --format="value(name, zone)" | grep "$1" -m 1)"
+        if [ -n "$cluster_line" ] ; then
+                cluster="$(echo "$cluster_line" | awk '{print $1}')"
+                zone="$(echo "$cluster_line" | awk '{print $2}')"
+                project="$(gcloud config get-value project)"
+                if [ -n "$(which jq)" ] ; then
+                        gcloud container clusters describe "$cluster" \
+                                --format="json()" \
+                                --zone "$zone" \
+                                --project "$project" | jq
+                else
+                        gcloud container clusters describe "$cluster" \
+                                --zone "$zone" \
+                                --project "$project"
+                fi
+        else
+                echo "cluster $1 not found" >&2
+                return 3
         fi
 }
