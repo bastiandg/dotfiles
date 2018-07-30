@@ -71,7 +71,7 @@ gcd() {
                         gcloud container clusters describe "$cluster" \
                                 --format="json()" \
                                 --zone "$zone" \
-                                --project "$project" | jq
+                                --project "$project" | jq .
                 else
                         gcloud container clusters describe "$cluster" \
                                 --zone "$zone" \
