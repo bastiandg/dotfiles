@@ -1,4 +1,4 @@
-function update_dotfiles() {
+update_dotfiles() {
 	if [ "$(which git)" ]; then
 		if [ ! -e ~/dotfiles/ ] ; then
 			# use the ssh variant if it's me
@@ -10,6 +10,7 @@ function update_dotfiles() {
 		else
 			(cd "$HOME/dotfiles/" && gu )
 		fi
+		cp -r "$HOME/dotfiles/bash_profile" "$HOME/.bash_profile"
 		cp -r "$HOME/dotfiles/bashrc" "$HOME/.bashrc"
 		rm -rf "$HOME/.bash"
 		cp -r "$HOME/dotfiles/bash" "$HOME/.bash"
@@ -26,5 +27,3 @@ function update_dotfiles() {
 	fi
 	source "$HOME/.bashrc"
 }
-
-
