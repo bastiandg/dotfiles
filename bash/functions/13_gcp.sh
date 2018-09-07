@@ -3,11 +3,11 @@
 # Build log list
 bl() {
         DAYS="${2:-1}"
-        gcloud container builds list --filter "create_time>-P${DAYS}D AND source: '$1'" --limit 10
+        gcloud builds list --filter "create_time>-P${DAYS}D AND source: '$1'" --limit 10
 }
 
 bs() {
-        gcloud container builds log --stream "$1"
+        gcloud builds log --stream "$1"
 }
 
 # initialize kubernetes with google cloud cluster credentials
