@@ -3,7 +3,7 @@
 # Build log list
 bl() {
         DAYS="${2:-1}"
-        gcloud builds list --filter "create_time>-P${DAYS}D AND source: '$1'" --limit 10
+        gcloud builds list --sort-by CREATE_TIME --filter "create_time>-P${DAYS}D AND source: '$1'" --limit 10
 }
 
 bs() {
