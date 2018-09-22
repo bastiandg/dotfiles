@@ -34,6 +34,7 @@ set autoindent               " always set autoindenting on
 set copyindent               " always set copyindenting on
 set fileformats=unix,dos,mac " support all three, in this order
 set nostartofline " leave my cursor where it was
+set guicursor= " prevent weird konsole behaviour
 
 
 set list                 " list nonprintable characters

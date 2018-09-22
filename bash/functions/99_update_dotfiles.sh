@@ -19,9 +19,9 @@ update_dotfiles() {
 		ln -s "$HOME/.vim/init.vim" "$HOME/.vimrc"
 		cp -r "$HOME/dotfiles/vim" "$HOME/.vim"
 		ln -s "$HOME/.vim" "$HOME/.config/nvim"
-		vim +PlugInstall +qall
+		nvim +PlugInstall +qall
 		pip3 install --upgrade neovim
-		vim +UpdateRemotePlugins +qall
+		nvim +UpdateRemotePlugins +qall
 	else
 		echo "git is not installed"
 	fi
