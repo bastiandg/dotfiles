@@ -1,63 +1,43 @@
-function bak() {
+bak() {
 	cp "$1" "$1.bak$(date "+%Y%m%d")"
 }
 
 #grep the history and show the results in less
-function hgl () {
+hgl () {
 	history | grep -i "$1" | less
 }
 
 #grep for processes
-function psg () {
+psg () {
 	ps aux | grep -i "$1"
 }
 
 
 #make a directory and change to it
-function mcd () {
+mcd () {
 	mkdir "$@" && cd "${!#}"
 }
 
 # Handy Extract Program
-function extract() {
+extract() {
      if [ -f $1 ] ; then
          case $1 in
-             *.tar.bz2)   tar xvjf $1     ;;
-             *.tar.gz)    tar xvzf $1     ;;
-             *.bz2)       bunzip2 $1      ;;
-             *.rar)       unrar x $1      ;;
-             *.gz)        gunzip $1       ;;
-             *.tar)       tar xvf $1      ;;
-             *.tbz2)      tar xvjf $1     ;;
-             *.tgz)       tar xvzf $1     ;;
-             *.zip)       unzip $1        ;;
-             *.Z)         uncompress $1   ;;
-             *.7z)        7z x $1         ;;
+             *.tar.bz2)   tar xvjf "$1"     ;;
+             *.tar.gz)    tar xvzf "$1"     ;;
+             *.bz2)       bunzip2 "$1"      ;;
+             *.rar)       unrar x "$1"      ;;
+             *.gz)        gunzip "$1"       ;;
+             *.tar)       tar xvf "$1"      ;;
+             *.tbz2)      tar xvjf "$1"     ;;
+             *.tgz)       tar xvzf "$1"     ;;
+             *.zip)       unzip "$1"        ;;
+             *.Z)         uncompress "$1"   ;;
+             *.7z)        7z x "$1"         ;;
              *)           echo "'$1' cannot be extracted via >extract<" ;;
          esac
      else
          echo "'$1' is not a valid file"
      fi
-}
-
-#update all git repos
-function ug() {
-    CURRENTDIR="$(pwd)"
-    GITDIRECTORIES="$(ls -d "$HOME/"*git)"
-    MAXTHREADCOUNT=10
-
-    for GITDIRECTORY in $GITDIRECTORIES ; do
-        for repo in $(ls -1 "$GITDIRECTORY/"); do
-            while [ "$(jobs | wc -l)" -ge "$MAXTHREADCOUNT" ] ; do
-                sleep 1
-            done
-            cd "$GITDIRECTORY/$repo"
-            git pull &
-            echo -e "\033[01;34m --- $repo pull started --- \033[00m"
-        done
-    done
-    wait
-    cd "$CURRENTDIR"
 }
 
 # https://unix.stackexchange.com/a/4220
@@ -76,19 +56,15 @@ make-completion-wrapper () {
   eval "$function"
 }
 
-function f () {
+f () {
     find . -iname "*${1}*"
 }
 
-function se () {
+se () {
     grep "$1" "$HOME/.ssh/config" | cut -d " " -f 2
 }
 
-function grin () {
-    grep -rin --color=always "$1" *
-}
-
-function tp () {
+tp () {
   if echo "$1" | grep -q ":" ; then
     echo "$1 h $h p $p"
     h="$(echo "$1" | cut -d ":" -f 1 )"
@@ -100,22 +76,7 @@ function tp () {
 }
 
 #calculate
-if [ "$(which bc )" ] ; then
-	function calc () {
-		bc -l <<< "scale=0; $*"
-	}
-elif [ "$(which python )" ] ; then
-	function calc () {
-		python -c "print $*" 2> /dev/null
-	}
-elif [ "$(which perl )" ] ; then
-	function calc () {
-		perl -E "say $*" 2> /dev/null
-	}
-else
-	echo "please install either bc or perl" >&2
-	function calc () {
-		echo "1"
-	}
-fi
+calc () {
+  awk "BEGIN {print ($*) }"
+}
 
