@@ -14,7 +14,6 @@ update_dotfiles() {
 		cp -r "$HOME/dotfiles/bashrc" "$HOME/.bashrc"
 		rm -rf "$HOME/.bash"
 		cp -r "$HOME/dotfiles/bash" "$HOME/.bash"
-		rm "$HOME/.bash/completions/vault-bash-completion/run-tests.sh" # TODO shitty workaround
 		if [ -n "$(which nvim)" ] ; then
 			rm -rf "$HOME/.vim/" "$HOME/.vimrc" "$HOME/.config/nvim"
 			ln -s "$HOME/.vim/init.vim" "$HOME/.vimrc"
