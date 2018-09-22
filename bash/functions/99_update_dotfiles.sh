@@ -15,13 +15,15 @@ update_dotfiles() {
 		rm -rf "$HOME/.bash"
 		cp -r "$HOME/dotfiles/bash" "$HOME/.bash"
 		rm "$HOME/.bash/completions/vault-bash-completion/run-tests.sh" # TODO shitty workaround
-		rm -rf "$HOME/.vim/" "$HOME/.vimrc" "$HOME/.config/nvim"
-		ln -s "$HOME/.vim/init.vim" "$HOME/.vimrc"
-		cp -r "$HOME/dotfiles/vim" "$HOME/.vim"
-		ln -s "$HOME/.vim" "$HOME/.config/nvim"
-		nvim +PlugInstall +qall
-		pip3 install --upgrade neovim
-		nvim +UpdateRemotePlugins +qall
+		if [ -n "$(which nvim)" ] ; then
+			rm -rf "$HOME/.vim/" "$HOME/.vimrc" "$HOME/.config/nvim"
+			ln -s "$HOME/.vim/init.vim" "$HOME/.vimrc"
+			cp -r "$HOME/dotfiles/vim" "$HOME/.vim"
+			ln -s "$HOME/.vim" "$HOME/.config/nvim"
+			nvim +PlugInstall +qall
+			pip3 install --upgrade neovim
+			nvim +UpdateRemotePlugins +qall
+		fi
 	else
 		echo "git is not installed"
 	fi
