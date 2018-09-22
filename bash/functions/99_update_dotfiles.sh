@@ -8,7 +8,7 @@ update_dotfiles() {
 				git clone --recursive https://github.com/bastiandg/dotfiles.git "$HOME/dotfiles"
 			fi
 		else
-			(cd "$HOME/dotfiles/" && gu )
+			(cd "$HOME/dotfiles/" && git pull && git submodule update --init --recursive)
 		fi
 		cp -r "$HOME/dotfiles/bash_profile" "$HOME/.bash_profile"
 		cp -r "$HOME/dotfiles/bashrc" "$HOME/.bashrc"
