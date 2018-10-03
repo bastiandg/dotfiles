@@ -17,7 +17,7 @@ _PS1 ()
 }
 
 lighten () {
-    echo "$(LANG=C printf '%.0f' "$(calc "$1 + (255 - $1) * $2")")"
+    LANG=C LC_NUMERIC='' printf '%.0f' "$(calc "$1 + (255 - $1) * $2")"
 }
 
 hash="$(hostname -f | sha512sum | cut -d" " -f1)"
