@@ -20,13 +20,18 @@ lighten () {
     LANG=C LC_NUMERIC='' printf '%.0f' "$(calc "$1 + (255 - $1) * $2")"
 }
 
+# http://alienryderflex.com/hsp.html
+brightness () {
+    calc "int(sqrt($1 * $1 * 0.299 + $2 * $2 * 0.587 + $3 * $3 * 0.114))"
+}
+
 hash="$(hostname -f | sha512sum | cut -d" " -f1)"
-threshold="80"
+threshold="100"
 fac="0.1"
 pos="0"
 r1="0" g1="0" b1="0" r2="0" g2="0" b2="0"
-while [ \( \( $r1 -le $threshold -a $g1 -le $threshold -a $b1 -le $threshold \) \
-    -o \( $r2 -le $threshold -a $g2 -le $threshold -a $b2 -le $threshold \) \) \
+while [ \( "$(brightness $r1 $g1 $b1)" -le $threshold \
+    -o  "$(brightness $r2 $g2 $b2)" -le $threshold \) \
     -a $pos -lt 120 ] ; do
     r1="$((16#${hash:$pos:2}))"
     r2="$((16#${hash:$((pos + 2)):2}))"
