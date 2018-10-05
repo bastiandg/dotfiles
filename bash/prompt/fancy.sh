@@ -16,46 +16,46 @@ _PS1 ()
 	return $ret #save the returnvalue
 }
 
-lighten () {
-    LANG=C LC_NUMERIC='' printf '%.0f' "$(calc "$1 + (255 - $1) * $2")"
+FQDN="$(hostname -f)"
+
+COLOR_CODES="$(awk '
+
+function brightness (r, g, b)
+{
+    return int(sqrt(r * r * 0.299 + g * g * 0.587 + b * b * 0.114))
 }
 
-# http://alienryderflex.com/hsp.html
-brightness () {
-    calc "int(sqrt($1 * $1 * 0.299 + $2 * $2 * 0.587 + $3 * $3 * 0.114))"
+function lighten (n) {
+    return n + (255 - n) * 0.1
 }
 
-hash="$(hostname -f | sha512sum | cut -d" " -f1)"
-threshold="100"
-fac="0.1"
-pos="0"
-r1="0" g1="0" b1="0" r2="0" g2="0" b2="0"
-while [ \( "$(brightness $r1 $g1 $b1)" -le $threshold \
-    -o  "$(brightness $r2 $g2 $b2)" -le $threshold \) \
-    -a $pos -lt 120 ] ; do
-    r1="$((16#${hash:$pos:2}))"
-    r2="$((16#${hash:$((pos + 2)):2}))"
-    g1="$((16#${hash:$((pos + 4)):2}))"
-    g2="$((16#${hash:$((pos + 6)):2}))"
-    b1="$((16#${hash:$((pos + 8)):2}))"
-    b2="$((16#${hash:$((pos + 10)):2}))"
+BEGIN{
+n = "'"$(sha512sum <<< "$FQDN" | cut -d" " -f1)"'"
+position = 1
+threshold = 100
+while (brightness(r1, b1, g1) < threshold || brightness(r2, b2, g2) < threshold)
+{
+	r1 = lighten(int("0x" substr(n, position, 2)))
+	r2 = lighten(int("0x" substr(n, position + 2, 2)))
+	g1 = lighten(int("0x" substr(n, position + 4, 2)))
+	g2 = lighten(int("0x" substr(n, position + 6, 2)))
+	b1 = lighten(int("0x" substr(n, position + 8, 2)))
+	b2 = lighten(int("0x" substr(n, position + 10, 2)))
+	position = position + 2
+}
+printf "%i;%i;%i\n", r1, g1, b1
+printf "%i;%i;%i", r2, g2, b2
+}')"
 
-    r1=$(lighten $r1 $fac)
-    r2=$(lighten $r2 $fac)
-    g1=$(lighten $g1 $fac)
-    g2=$(lighten $g2 $fac)
-    b1=$(lighten $b1 $fac)
-    b2=$(lighten $b2 $fac)
-    pos=$((pos + 2))
-done
+COLOR_ARRAY=(${COLOR_CODES//\n/ })
 
 #Command Number
 #CMDNR="\!"
 #User
-U="\[\033[38;2;$r1;$g1;${b1}m\]\u\[\033[00m\]"
+U="\[\033[38;2;${COLOR_ARRAY[0]}m\]\u\[\033[00m\]"
 
 #Host
-H="\[\033[38;2;$r2;$g2;${b2}m\]$(hostname -f)\[\033[00m\]"
+H="\[\033[38;2;${COLOR_ARRAY[1]}m\]$(hostname -f)\[\033[00m\]"
 
 #Directory
 DIR="\[\033[01;34m\]"'$(_PS1 "$PWD" 50)'"\[\033[00m\]"
