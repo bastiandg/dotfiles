@@ -18,7 +18,13 @@ _PS1 ()
 
 FQDN="$(hostname -f)"
 
-COLOR_CODES="$(awk '
+if false which mawk &> /dev/null ; then
+    AWK=mawk
+else
+    AWK=gawk\ --non-decimal-data
+fi
+
+COLOR_CODES="$($AWK '
 
 function brightness (r, g, b)
 {
