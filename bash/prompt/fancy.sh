@@ -33,8 +33,7 @@ BEGIN{
 n = "'"$(sha512sum <<< "$FQDN" | cut -d" " -f1)"'"
 position = 1
 threshold = 100
-while (brightness(r1, b1, g1) < threshold || brightness(r2, b2, g2) < threshold)
-{
+while ((brightness(r1, b1, g1) < threshold || brightness(r2, b2, g2) < threshold) && position < 120) {
 	r1 = lighten(int("0x" substr(n, position, 2)))
 	r2 = lighten(int("0x" substr(n, position + 2, 2)))
 	g1 = lighten(int("0x" substr(n, position + 4, 2)))
