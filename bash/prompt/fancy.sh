@@ -18,7 +18,7 @@ _PS1 ()
 
 FQDN="$(hostname -f)"
 
-if false which mawk &> /dev/null ; then
+if which mawk &> /dev/null ; then
     AWK=mawk
 else
     AWK=gawk\ --non-decimal-data
