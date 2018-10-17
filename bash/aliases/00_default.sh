@@ -10,10 +10,10 @@ fi
 
 # aliases
 alias watch='watch '
-alias ll='ls -l'
-alias la='ls -la'
-alias lla='ls -la'
-alias l='ls -l'
+alias ll='ls -lN'
+alias la='ls -laN'
+alias lla='ls -laN'
+alias l='ls -lN'
 alias cp='cp -vr'
 alias mv='mv -v'
 alias rm='rm -v'
