@@ -9,6 +9,7 @@ if [ -e /usr/bin/ag ] ; then
 fi
 
 # aliases
+alias vim=nvim
 alias watch='watch '
 alias ll='ls -lN'
 alias la='ls -laN'
