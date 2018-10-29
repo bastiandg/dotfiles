@@ -22,6 +22,20 @@ pd() {
     else
         kubectl describe pod "$pod_id" --namespace "$pod_ns"
     fi
+    echo -e '\n\033[01;34mLogs:\033[00m'
+    kubectl logs --tail=20 -n "$pod_ns" "$pod_id"
+}
+
+ph() {
+    if [ -z "$1" ] ; then
+        echo "pattern missing" >&2
+        return 1
+    fi
+    tail="${2:-200}"
+    pod_line="$(kubectl get pods --all-namespaces | grep -i "$1" -m 1)"
+    pod_id="$(echo "$pod_line" | awk '{print $2}')"
+    pod_ns="$(echo "$pod_line" | awk '{print $1}')"
+    kubectl logs --tail="$tail" -n "$pod_ns" "$pod_id"
 }
 
 px() {
