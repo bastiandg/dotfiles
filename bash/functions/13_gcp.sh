@@ -1,6 +1,6 @@
 # google cloud stuff
 
-alias gcloud='docker run --volume "$HOME/.config/docker/gcloud:/root/.config" google/cloud-sdk:alpine gcloud'
+# alias gcloud='docker run --volume "$HOME/.config/docker/gcloud:/root/.config" google/cloud-sdk:alpine gcloud'
 
 # Build log list
 bl() {
