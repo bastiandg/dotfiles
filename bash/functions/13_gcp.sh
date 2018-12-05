@@ -14,11 +14,8 @@ bs() {
 
 # initialize kubernetes with google cloud cluster credentials
 kcc() {
-        if [ -z "$1" ] ; then
-                echo "kcc requires a pattern" >&2
-                return 2
-        fi
-        cluster_line="$(gcloud container clusters list --format="value(name, zone)" | grep "$1" -m 1)"
+        pattern="${1:-cluster}"
+        cluster_line="$(gcloud container clusters list --format="value(name, zone)" | grep "$pattern" -m 1)"
         if [ -n "$cluster_line" ] ; then
                 cluster="$(echo "$cluster_line" | awk '{print $1}')"
                 zone="$(echo "$cluster_line" | awk '{print $2}')"
