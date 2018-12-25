@@ -10,6 +10,8 @@ Plug 'vim-scripts/YankRing.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf'}
+Plug 'junegunn/fzf.vim'
 
 " Language plugins
 Plug 'ekalinin/Dockerfile.vim'

@@ -39,6 +39,9 @@ nnoremap ; :
 nnoremap j gj
 nnoremap k gk
 
+nmap <c-s> :vsplit<CR>:Files<CR>
+nmap <c-f> :split<CR>:Files<CR>
+
 "Commenting function with ü
 nnoremap ü :call NERDComment(0, "toggle")<cr>
 vnoremap <silent> ü :call NERDComment(0, "toggle")<cr>

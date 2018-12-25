@@ -12,6 +12,9 @@ endif
 set nocompatible " explicitly get out of vi-compatible mode
 set completeopt=menu
 set wildmenu " enhanced command-line completion
+
+set splitbelow
+set splitright
 set background=dark
 let mapleader = "\<Space>"
 let g:mapleader = "\<Space>"
