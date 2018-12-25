@@ -38,6 +38,9 @@ bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
 bind '"\eOC":forward-word'
 bind '"\eOD":backward-word'
+bind 'set input-meta on'
+bind 'set output-meta on'
+bind 'set convert-meta off'
 bind 'set completion-ignore-case on'
 
 export LANG=en_US.UTF-8
