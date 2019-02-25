@@ -21,6 +21,10 @@ if [ -d "$HOME/go/bin" ] ; then
 	export PATH="$PATH:$HOME/go/bin"
 fi
 
+if [ -d "/usr/local/go/bin/" ] ; then
+	export PATH="$PATH:/usr/local/go/bin/"
+fi
+
 # depends on https://github.com/bastiandg/setup/blob/master/packages/diff-so-fancy.sh
 if [ -x "/opt/diff-so-fancy/diff-so-fancy" ] ; then
 	export GIT_PAGER="/opt/diff-so-fancy/diff-so-fancy | less --tabs=4 -RX"
