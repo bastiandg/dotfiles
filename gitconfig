@@ -9,6 +9,7 @@
         pl = pull
         c = commit
         ck = checkout
+        ckm = checkout master
         cb = checkout -b
         d = diff --stat
         dd = diff
