@@ -30,6 +30,15 @@ kcc() {
 }
 
 # set gcloud project
+gpl() {
+        if [ -z "$1" ] ; then
+                echo "gpl requires a pattern" >&2
+                return 2
+        fi
+        gcloud projects list --sort-by=name | grep -i "$1"
+}
+
+# set gcloud project
 gcp() {
         if [ -z "$1" ] ; then
                 echo "gcp requires a pattern" >&2
