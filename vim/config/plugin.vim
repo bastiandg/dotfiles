@@ -1,4 +1,5 @@
 call plug#begin('~/.vim/plugged')
+Plug 'leafgarland/typescript-vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'nathanaelkane/vim-indent-guides'
