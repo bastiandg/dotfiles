@@ -10,7 +10,7 @@ fi
 
 # aliases
 alias vim=nvim
-alias todo='vim -o ~/todo.md ~/notizen.md "+windo set nonumber" "+windo set nolist" "+windo set fcs=eob:\ "'
+alias todo='vim -o ~/todo.md ~/notizen.md "+windo set nonumber" "+windo set nolist" "+windo set fcs=eob:\ " "+SyntasticToggleMode"'
 alias watch='watch '
 alias ll='ls -lN'
 alias la='ls -laN'
