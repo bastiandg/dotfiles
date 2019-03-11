@@ -52,6 +52,7 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guifg=#82848d guibg=#0c1021
 
 " syntastic
 let g:syntastic_python_flake8_args = "--ignore=W191"
+let g:syntastic_markdown_mdl_args = "-r ~MD033,~MD013"
 
 " expand region
 vmap v <Plug>(expand_region_expand)
