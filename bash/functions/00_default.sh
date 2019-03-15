@@ -4,7 +4,7 @@ bak() {
 
 #grep the history and show the results in less
 hgl () {
-	history | grep -i "$1" | less
+	history | \grep -i --color=always "$1" | less
 }
 
 #grep for processes
