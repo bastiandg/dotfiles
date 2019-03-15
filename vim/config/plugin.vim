@@ -36,8 +36,8 @@ call plug#end()
 " rainbow parantheses config
 let g:rainbow_active = 1
 let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}'], ['<', '>']]
-let g:rainbow_conf = {'operators': '_,\|+\|-\|*\|\/\|!=\|==\||\|:_'}
-autocmd Filetype go let g:rainbow_conf = {'operators': '_,\|+\|-\|*\|!=\|==\||\|:_'}
+let g:rainbow_conf = {'operators': '_,\|+\|-\|*\|&&\|;\|!==\|!=\|===\|==\||\|:_'}
+"autocmd Filetype go let g:rainbow_conf = {'operators': '_,\|+\|-\|*\|!=\|==\||\|:_'}
 
 " disable auto markdown folding
 let g:vim_markdown_folding_disabled = 1
