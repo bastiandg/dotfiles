@@ -33,6 +33,13 @@ Plug 'tomasr/molokai'
 Plug 'junegunn/seoul256.vim'
 call plug#end()
 
+" vim-terraform
+" format on save
+let g:terraform_fmt_on_save=1
+
+" override default indentation
+let g:terraform_align=1
+
 " rainbow parantheses config
 let g:rainbow_active = 1
 let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}'], ['<', '>']]
