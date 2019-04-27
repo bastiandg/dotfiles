@@ -20,7 +20,7 @@ Plug 'hashivim/vim-vagrant'
 Plug 'rodjek/vim-puppet'
 Plug 'plasticboy/vim-markdown'
 Plug 'hashivim/vim-terraform'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'fatih/vim-go'
 
 " completion
 Plug 'Shougo/deoplete.nvim'
