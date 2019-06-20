@@ -90,3 +90,14 @@ gcd() {
                 return 3
         fi
 }
+
+gct() {
+        VALIDITY_SECONDS="3600"
+        TOKEN_FILE="/tmp/gct-${USER}-$(\grep -oP '(?<=account = ).*(?=$)' ~/.config/gcloud/configurations/config_default)/token"
+        if [[ ! -e "$TOKEN_FILE" || "$(($(date '+%s') - $(stat --printf='%Y' "$TOKEN_FILE")))" -ge "$VALIDITY_SECONDS" ]] ; then
+                mkdir -p "$(dirname "$TOKEN_FILE")"
+                chmod 700 "$(dirname "$TOKEN_FILE")"
+                gcloud auth print-access-token > "$TOKEN_FILE"
+        fi
+        cat "$TOKEN_FILE"
+}
