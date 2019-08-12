@@ -20,6 +20,7 @@ Plug 'hashivim/vim-vagrant'
 Plug 'rodjek/vim-puppet'
 Plug 'plasticboy/vim-markdown'
 Plug 'hashivim/vim-terraform'
+Plug 'juliosueiras/vim-terraform-completion'
 Plug 'fatih/vim-go'
 
 " completion
@@ -29,16 +30,13 @@ Plug 'Shougo/neco-syntax'
 Plug 'zchee/deoplete-go', { 'do': 'make'}
 
 " colorschemes
-Plug 'tomasr/molokai'
 Plug 'junegunn/seoul256.vim'
+Plug 'chriskempson/base16-vim'
 call plug#end()
 
 " vim-terraform
 " format on save
 let g:terraform_fmt_on_save=1
-
-" override default indentation
-let g:terraform_align=1
 
 " rainbow parantheses config
 let g:rainbow_active = 1
