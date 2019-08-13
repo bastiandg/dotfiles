@@ -9,6 +9,7 @@ Plug 'vim-syntastic/syntastic'
 Plug 'terryma/vim-expand-region'
 Plug 'vim-scripts/YankRing.vim'
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf'}
@@ -65,6 +66,9 @@ vmap <C-v> <Plug>(expand_region_shrink)
 
 " airline powerline symbols
 let g:airline_powerline_fonts = 1
+
+" airline_themes
+let g:airline_theme='base16_pop'
 
 " deoplete
 let g:deoplete#enable_at_startup = 1
