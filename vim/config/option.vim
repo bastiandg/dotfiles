@@ -55,6 +55,7 @@ autocmd BufReadPost *
 			\ endif
 
 silent! colorscheme base16-pop
+hi Normal ctermbg=Black ctermfg=White guifg=White guibg=Black
 set guifont=Source\ Code\ Pro\ 14
 set cursorline
 "
