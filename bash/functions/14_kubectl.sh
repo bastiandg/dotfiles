@@ -31,11 +31,16 @@ ph() {
         echo "pattern missing" >&2
         return 1
     fi
-    tail="${2:-200}"
+    container_id="${2:-}"
+    tail="${3:-200}"
     pod_line="$(kubectl get pods --all-namespaces | grep -i "$1" -m 1)"
     pod_id="$(echo "$pod_line" | awk '{print $2}')"
     pod_ns="$(echo "$pod_line" | awk '{print $1}')"
-    kubectl logs --tail="$tail" -n "$pod_ns" "$pod_id"
+    if [ -z "$container_id" ] ; then
+        kubectl logs --tail="$tail" -n "$pod_ns" "$pod_id"
+    else
+        kubectl logs --tail="$tail" -c "$container_id" -n "$pod_ns" "$pod_id"
+    fi
 }
 
 px() {
@@ -43,10 +48,15 @@ px() {
         echo "pattern missing" >&2
         return 1
     fi
+    container_id="${2:-}"
     pod_line="$(kubectl get pods --all-namespaces | grep -i "$1" -m 1)"
     pod_id="$(echo "$pod_line" | awk '{print $2}')"
     pod_ns="$(echo "$pod_line" | awk '{print $1}')"
-    kubectl exec -it "$pod_id" --namespace "$pod_ns" -- /bin/sh
+    if [ -z "$container_id" ] ; then
+        kubectl exec -it "$pod_id" --namespace "$pod_ns" -- /bin/sh
+    else
+        kubectl exec -it "$pod_id" -c "$container_id" --namespace "$pod_ns" -- /bin/sh
+    fi
 }
 
 kp() {

@@ -9,6 +9,7 @@ Plug 'vim-syntastic/syntastic'
 Plug 'terryma/vim-expand-region'
 Plug 'vim-scripts/YankRing.vim'
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf'}
@@ -20,6 +21,7 @@ Plug 'hashivim/vim-vagrant'
 Plug 'rodjek/vim-puppet'
 Plug 'plasticboy/vim-markdown'
 Plug 'hashivim/vim-terraform'
+Plug 'juliosueiras/vim-terraform-completion'
 Plug 'fatih/vim-go'
 
 " completion
@@ -29,16 +31,13 @@ Plug 'Shougo/neco-syntax'
 Plug 'zchee/deoplete-go', { 'do': 'make'}
 
 " colorschemes
-Plug 'tomasr/molokai'
 Plug 'junegunn/seoul256.vim'
+Plug 'chriskempson/base16-vim'
 call plug#end()
 
 " vim-terraform
 " format on save
 let g:terraform_fmt_on_save=1
-
-" override default indentation
-let g:terraform_align=1
 
 " rainbow parantheses config
 let g:rainbow_active = 1
@@ -67,6 +66,9 @@ vmap <C-v> <Plug>(expand_region_shrink)
 
 " airline powerline symbols
 let g:airline_powerline_fonts = 1
+
+" airline_themes
+let g:airline_theme='base16_pop'
 
 " deoplete
 let g:deoplete#enable_at_startup = 1

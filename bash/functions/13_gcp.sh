@@ -38,6 +38,22 @@ gpl() {
         gcloud projects list --sort-by=name | grep -i "$1"
 }
 
+# describe project
+gpd() {
+        if [ -z "$1" ] ; then
+                echo "gcp requires a pattern" >&2
+                return 2
+        fi
+        project_list="$(gcloud projects list --format="value(project_id, name)" | grep -i "$1" -m 1)"
+        if [ -n "$project_list" ] ; then
+                project_id="$(echo "$project_list" | awk '{print $1}')"
+                gcloud projects describe "$project_id"
+        else
+                echo "project_id $1 not found" >&2
+                return 3
+        fi
+}
+
 # set gcloud project
 gcp() {
         if [ -z "$1" ] ; then
