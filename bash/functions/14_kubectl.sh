@@ -1,6 +1,10 @@
 alias k="kubectl"
 alias kg="kubectl get"
 
+source <(kubectl completion bash)
+complete -F _complete_alias k
+complete -F _complete_alias kg
+
 pl() {
     if [ -z "$1" ] ; then
         kubectl get pods --all-namespaces
