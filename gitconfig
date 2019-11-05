@@ -1,17 +1,18 @@
 [core]
-        editor = vim
+	editor = nvim
 [alias]
-        l = log --stat --color
-        s = status -s
-        ss = status
-        a = add
-        ps = push
-        pl = pull
-        c = commit
-        ck = checkout
-        ckm = checkout master
-        cb = checkout -b
-        d = diff --stat
-        dd = diff
-        ds = diff --staged
-        m = merge
+	a = add
+	ba = !git --no-pager branch -a
+	cb = checkout -b
+	c = commit
+	ck = checkout
+	ckm = checkout master
+	dd = diff
+	d = diff --stat
+	ds = diff --staged
+	l = log --color
+	m = merge
+	ps = push
+	pu = pull
+	ss = status
+	s = status -s
