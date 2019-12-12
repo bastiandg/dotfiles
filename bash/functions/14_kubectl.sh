@@ -1,9 +1,13 @@
 alias k="kubectl"
 alias kg="kubectl get"
 
-source <(kubectl completion bash)
+if command -v kubectl ; then
+    source <(kubectl completion bash)
+fi
+
 complete -F _complete_alias k
 complete -F _complete_alias kg
+
 
 pl() {
     if [ -z "$1" ] ; then
