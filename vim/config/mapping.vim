@@ -48,6 +48,8 @@ nmap <C-y> :Files<CR>
 nnoremap ü :call NERDComment(0, "toggle")<cr>
 vnoremap <silent> ü :call NERDComment(0, "toggle")<cr>
 
+map <C-N> :NERDTreeToggle<CR>
+
 function! YRRunAfterMaps()
 	" Y yanks from cursor to $
 	nnoremap Y :<C-U>YRYankCount 'y$'<CR>
@@ -83,7 +85,7 @@ nnoremap U <C-r>
 :command Q q
 
 if has('nvim')
-	tnoremap <Esc> <C-\><C-n>
+	tnoremap <Esc> <C-\><C-N>
 	tnoremap <C-h> <C-\><C-N><C-w>h
 	tnoremap <C-j> <C-\><C-N><C-w>j
 	tnoremap <C-k> <C-\><C-N><C-w>k

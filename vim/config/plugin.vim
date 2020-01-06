@@ -35,6 +35,8 @@ Plug 'junegunn/seoul256.vim'
 Plug 'chriskempson/base16-vim'
 call plug#end()
 
+let g:yankring_replace_n_nkey = ''
+
 " vim-terraform
 " format on save
 let g:terraform_fmt_on_save=1
