@@ -25,13 +25,17 @@ if [ -d "/usr/local/go/bin/" ] ; then
 	export PATH="$PATH:/usr/local/go/bin/"
 fi
 
+if [ -d "$HOME/.local/bin" ] ; then
+	export PATH="$PATH:$HOME/.local/bin"
+fi
+
 # depends on https://github.com/bastiandg/setup/blob/master/packages/diff-so-fancy.sh
 if [ -x "/opt/diff-so-fancy/diff-so-fancy" ] ; then
 	export GIT_PAGER="/opt/diff-so-fancy/diff-so-fancy | less --tabs=4 -RX"
 fi
 
 #vim as manpager
-export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -c 'map q :q<CR>' -\""
+export MANPAGER="/bin/sh -c \"col -b | nvim -c 'set ft=man ts=8 nomod nolist nonu noma' -c 'map q :q<CR>' -\""
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
