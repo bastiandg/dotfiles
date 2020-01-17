@@ -48,6 +48,8 @@ else
 	set listchars=tab:>\ ,trail:-
 endif
 
+let g:is_bash=1 " Enable here-strings in bash highlighting
+
 " restore cursor position
 autocmd BufReadPost *
 			\ if line("'\"") > 0 && line("'\"") <= line("$") |
