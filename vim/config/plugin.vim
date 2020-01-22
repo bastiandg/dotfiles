@@ -61,6 +61,8 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guifg=#82848d guibg=#0c1021
 " syntastic
 let g:syntastic_python_flake8_args = "--ignore=W191"
 let g:syntastic_markdown_mdl_args = "-r ~MD033,~MD013"
+let g:syntastic_dockerfile_checkers = ['hadolint']
+let g:syntastic_filetype_map = { "Dockerfile": "dockerfile" }
 
 " expand region
 vmap v <Plug>(expand_region_expand)
@@ -79,3 +81,5 @@ inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 " activate limelight with goyo
 autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
+
+autocmd BufRead,BufNewFile *.hcl set filetype=terraform
