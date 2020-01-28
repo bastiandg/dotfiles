@@ -62,6 +62,8 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guifg=#82848d guibg=#0c1021
 let g:syntastic_python_flake8_args = "--ignore=W191"
 let g:syntastic_markdown_mdl_args = "-r ~MD033,~MD013"
 let g:syntastic_dockerfile_checkers = ['hadolint']
+let g:syntastic_yaml_checkers = ['yamllint']
+let g:syntastic_yaml_yamllint_args = "-d \"{extends: default, rules: {line-length: {max: 120}}}\""
 let g:syntastic_filetype_map = { "Dockerfile": "dockerfile" }
 
 " expand region
