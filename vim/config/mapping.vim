@@ -73,7 +73,7 @@ imap <F7> <C-o>:call MySpellLang()<CR>
 map <F8> : NERDTreeToggle<CR>
 "run current script
 map <F9> <ESC>:w<CR>:!%<CR>
-map <F10> ^r✓
+map <F10> ^r✓ddGp<C-o>
 nnoremap <Tab> >>
 nnoremap <S-Tab> <<
 vnoremap <Tab> >gv
