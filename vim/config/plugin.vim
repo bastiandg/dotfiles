@@ -14,6 +14,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf'}
 Plug 'junegunn/fzf.vim'
+Plug 'ntpeters/vim-better-whitespace'
 
 " Language plugins
 Plug 'ekalinin/Dockerfile.vim'
@@ -59,8 +60,10 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=Black   guifg=White
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guifg=#82848d guibg=#0c1021
 
 " syntastic
-let g:syntastic_python_flake8_args = "--ignore=W191"
-let g:syntastic_markdown_mdl_args = "-r ~MD033,~MD013"
+
+let g:syntastic_python_checkers = ['flake8', 'python']
+let g:syntastic_python_flake8_args = "--ignore=W191 --max-line-length=150"
+let g:syntastic_markdown_mdl_args = "-r ~MD033,~MD013,~MD029"
 let g:syntastic_dockerfile_checkers = ['hadolint']
 let g:syntastic_yaml_checkers = ['yamllint']
 let g:syntastic_yaml_yamllint_args = "-d \"{extends: default, rules: {line-length: {max: 120}}}\""
