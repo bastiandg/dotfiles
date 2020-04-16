@@ -1,5 +1,5 @@
 function dx () {
-	docker exec -ti $1 /bin/bash
+	docker exec -ti "$1" /bin/bash
 }
 
 function dps () {
@@ -20,6 +20,5 @@ function di () {
 
 alias dl="docker logs"
 alias dlf="docker logs -f"
-alias dps1='docker ps -q'
-alias dpsa1='docker ps -aq'
-
+alias dpsa="docker ps -a"
+alias dr="docker run -u root -it --rm --entrypoint /bin/sh"
