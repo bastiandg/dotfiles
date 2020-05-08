@@ -1,7 +1,7 @@
 set enc=utf-8
 set termguicolors
 if exists('&inccommand')
-  set inccommand=split
+	set inccommand=split
 endif
 
 if exists("+undofile")
