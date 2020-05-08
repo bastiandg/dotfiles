@@ -34,6 +34,9 @@ Plug 'zchee/deoplete-go', { 'do': 'make'}
 " colorschemes
 Plug 'junegunn/seoul256.vim'
 Plug 'chriskempson/base16-vim'
+
+" git
+Plug 'Xuyuanp/nerdtree-git-plugin'
 call plug#end()
 
 let g:yankring_replace_n_nkey = ''
@@ -88,3 +91,7 @@ autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
 
 autocmd BufRead,BufNewFile *.hcl set filetype=terraform
+"autocmd vimenter * NERDTree
+let NERDTreeMinimalUI = 1
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif

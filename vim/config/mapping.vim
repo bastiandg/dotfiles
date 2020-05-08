@@ -41,7 +41,7 @@ nnoremap k gk
 
 vmap <C-c> "+y
 nmap <C-s> :vsplit<CR>:Files<CR>
-nmap <C-f> :split<CR>:Files<CR>
+nmap <C-f> :Ag<CR>
 nmap <C-y> :Files<CR>
 
 "Commenting function with ü

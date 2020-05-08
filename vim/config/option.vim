@@ -58,8 +58,10 @@ autocmd BufReadPost *
 
 silent! colorscheme base16-pop
 hi Normal ctermbg=Black ctermfg=White guifg=White guibg=Black
+hi Search guibg=black guifg=White gui=underline
 set guifont=Source\ Code\ Pro\ 14
 set cursorline
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 "
 "underline the current line
 hi CursorLine cterm=NONE,underline
