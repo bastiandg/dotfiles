@@ -7,7 +7,7 @@
 	cb = checkout -b
 	c = commit
 	ck = checkout
-	ckm = checkout master
+	ckm = !git checkout "$(git symbolic-ref --short HEAD)"
 	dd = diff
 	ds = diff --staged
 	d = diff --stat
