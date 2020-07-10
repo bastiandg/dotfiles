@@ -52,6 +52,7 @@ alias text='NVIM_TUI_ENABLE_TRUE_COLOR=0 vim -u ~/.vim/mail.vim +Goyo'
 alias gc="gcloud"
 alias kc="kubectl"
 alias tm='cd "$(mktemp -d)"'
+alias tree='tree --dirsfirst'
 
 
 #colourise
