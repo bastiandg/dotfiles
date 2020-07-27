@@ -1,27 +1,27 @@
 bak() {
-	cp "$1" "$1.bak$(date "+%Y%m%d")"
+  cp "$1" "$1.bak$(date "+%Y%m%d")"
 }
 
 #grep the history and show the results in less
 hgl () {
-	history | \grep -i --color=always "$1" | less
+  history | \grep -i --color=always "$1" | less
 }
 
 #grep for processes
 psg () {
-	ps aux | grep -i "$1"
+  ps aux | grep -i "$1"
 }
 
 
 #make a directory and change to it
 mcd () {
-	mkdir "$@" && cd "${!#}"
+  mkdir "$@" && cd "${!#}"
 }
 
 # Handy Extract Program
 extract() {
-     if [ -f $1 ] ; then
-         case $1 in
+     if [[ -f "$1" ]] ; then
+         case "$1" in
              *.tar.bz2)   tar xvjf "$1"     ;;
              *.tar.gz)    tar xvzf "$1"     ;;
              *.bz2)       bunzip2 "$1"      ;;
@@ -80,3 +80,19 @@ calc () {
   awk "BEGIN {print ($*) }"
 }
 
+if command -v gron &> /dev/null ; then
+  jg () {
+    if [[ "$#" -lt 1 ]]; then
+      echo "$0 [pattern] data_source" >&2
+      return 1
+    fi
+    pattern="$1"
+    data_source="${2:-}" # gron autodetects whether it's a path or a url
+
+    if [[ -z "$pattern" ]] ; then
+      gron "$data_source"
+    elif command -v jq &> /dev/null ; then
+      gron ${data_source:+"$data_source"} | grep -- "$pattern" | gron --ungron | jq
+    fi
+  }
+fi
