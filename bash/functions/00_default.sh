@@ -56,9 +56,13 @@ make-completion-wrapper () {
   eval "$function"
 }
 
-f () {
-    find . -iname "*${1}*"
-}
+if command -v fdfind  &> /dev/null ; then
+  alias f=fdfind
+else
+  f () {
+      find . -iname "*${1}*"
+  }
+fi
 
 se () {
     grep "$1" "$HOME/.ssh/config" | cut -d " " -f 2
