@@ -1,5 +1,15 @@
 [core]
 	editor = nvim
+	pager = delta
+
+[delta]
+	plus-color = "#012800"
+	minus-color = "#340001"
+	syntax-theme = Monokai Extended
+
+[interactive]
+	diffFilter = delta --color-only
+
 [alias]
 	a = add
 	b = !git --no-pager branch
@@ -8,14 +18,20 @@
 	c = commit
 	ck = checkout
 	ckm = !git checkout "$(basename "$(git symbolic-ref refs/remotes/origin/HEAD)")"
+	pr = !git diff "$(basename "$(git symbolic-ref refs/remotes/origin/HEAD)")...$(git rev-parse --abbrev-ref HEAD)"
 	dd = diff
 	ds = diff --staged
 	d = diff --stat
 	d1 = diff HEAD~
 	d2 = diff HEAD~2
-	l = log --color
+	;l = log --color
 	m = merge
 	ps = push
 	pu = pull
 	ss = status
 	s = status -s
+	l = log --graph --abbrev-commit --decorate --date=local --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ad) %C(white) %s - %C(bold blue)%an %C(reset)%C(bold yellow)%d%C(reset)' --all
+[pull]
+	rebase = false
+[color]
+	ui = auto
