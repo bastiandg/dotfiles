@@ -52,4 +52,3 @@ bind 'set convert-meta off'
 bind 'set completion-ignore-case on'
 
 export LANG=en_US.UTF-8
-stty -icrnl
