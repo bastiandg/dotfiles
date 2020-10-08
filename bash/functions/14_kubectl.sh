@@ -1,5 +1,6 @@
 alias k="kubectl"
 alias kg="kubectl get"
+alias kd="kubectl describe"
 
 if command -v kubectl &> /dev/null ; then
     source <(kubectl completion bash)
@@ -7,6 +8,7 @@ fi
 
 complete -F _complete_alias k
 complete -F _complete_alias kg
+complete -F _complete_alias kd
 
 
 pl() {
@@ -65,26 +67,4 @@ px() {
     else
         kubectl exec -it "$pod_id" -c "$container_id" --namespace "$pod_ns" -- /bin/sh
     fi
-}
-
-kp() {
-    token="$(kubectl config view -o jsonpath="{range .users[?(@.name == '$(kubectl config current-context)')]}{@.user.auth-provider.config.access-token}")"
-    if [ -n "$(which xclip)" ] ; then
-        printf "%s" "$token" | xclip -selection primary
-    elif [[ "$OSTYPE" == "darwin"* ]] ; then
-        printf "%s" "$token" | pbcopy
-    else
-        echo "kubectl token: $token"
-    fi
-    kubectl proxy &
-    PID="$!"
-    trap "kill $PID" SIGINT SIGTERM
-    if [[ "$OSTYPE" == "linux-gnu" ]] ; then
-        printf "%s" "$token" | xclip -selection primary
-        xdg-open "http://localhost:8001/ui"
-    elif [[ "$OSTYPE" == "darwin"* ]] ; then
-        printf "%s" "$token" | pbcopy
-        open "http://localhost:8001/ui"
-    fi
-    wait
 }
