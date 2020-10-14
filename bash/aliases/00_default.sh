@@ -1,17 +1,8 @@
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls -F --color=auto'
-fi
-
-if [ -e /usr/bin/ag ] ; then
-    alias ag="ag --color-match='1;31' --color-line='1;32' --color-path='35'"
-fi
-
 # aliases
 alias vim=nvim
 alias todo='vim -o ~/todo.md ~/notizen.md "+windo set nonumber" "+windo set nolist" "+windo set fcs=eob:\ " "+SyntasticToggleMode"'
 alias watch='watch '
+alias ls='ls -F -h --color=auto'
 alias ll='ls -lN'
 alias la='ls -laN'
 alias lla='ls -laN'
@@ -50,7 +41,6 @@ alias g1="git diff HEAD~1"
 alias -- -='cd -'
 alias text='NVIM_TUI_ENABLE_TRUE_COLOR=0 vim -u ~/.vim/mail.vim +Goyo'
 alias gc="gcloud"
-alias kc="kubectl"
 alias tm='cd "$(mktemp -d)"'
 alias tree='tree --dirsfirst'
 
