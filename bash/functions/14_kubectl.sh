@@ -68,3 +68,26 @@ px() {
         kubectl exec -it "$pod_id" -c "$container_id" --namespace "$pod_ns" -- /bin/sh
     fi
 }
+
+kc() {
+    if [ -z "$1" ] ; then
+        echo "pattern missing" >&2
+        return 1
+    fi
+    context="$(kubectl config view -o json | \
+        jq -r ".contexts[] |
+                select(
+                    (.name | test(\"$1\"; \"i\")) or
+                    (.context.cluster | test(\"$1\"; \"i\"))
+                ) | .name")"
+    context_count="$(wc -l <<< "$context")"
+    if [[ "$context_count" == 0 ]] ; then
+        echo "Pattern '$1' not found in kubectl contexts" >&2
+        return 2
+    elif [[ "$context_count" -gt 1 ]] ; then
+        echo -e "Pattern '$1' ambiguous. Results: \n$context" >&2
+        return 3
+    else
+        kubectl config use-context "$context"
+    fi
+}
