@@ -70,7 +70,8 @@ DATE="\e[1m\t \d\[\033[00m\]"
 TTY="\l"
 #Return code
 RETURN="\$(ret=\$?; if [[ \$ret = 0 ]];then echo \"\[\033[01;32m\]✓\";else echo \"\[\033[01;31m\]\$ret\";fi)\[\033[00m\]"
-#
 
-#the actual prompt with a colorised return code
-PS1="$DATE - $DIR$ROOT\n$U@$H $RETURN \$ " #schnell
+export GIT_PS1_SHOWCOLORHINTS=1
+
+#Write out history after each command
+export PROMPT_COMMAND='__git_ps1 "$DATE - $DIR$ROOT" "\n$U@$H $RETURN \$ "; history -a'
