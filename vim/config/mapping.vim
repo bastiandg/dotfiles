@@ -40,7 +40,7 @@ nnoremap j gj
 nnoremap k gk
 
 vmap <C-c> "+y
-nmap <C-s> :vsplit<CR>:Files<CR>
+nmap <C-s> :vsplit<CR>:Rg<CR>
 nmap <C-f> :Rg<CR>
 nmap <C-y> :Files<CR>
 

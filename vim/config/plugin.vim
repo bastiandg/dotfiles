@@ -62,6 +62,10 @@ let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=Black   guifg=White
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guifg=#82848d guibg=#0c1021
 
+" fzf
+" https://github.com/junegunn/fzf.vim/pull/707
+let $FZF_PREVIEW_COMMAND = 'batcat --color=always -pp {} || cat {}'
+
 " syntastic
 
 let g:syntastic_python_checkers = ['flake8', 'python']
