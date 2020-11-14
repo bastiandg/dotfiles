@@ -1,5 +1,5 @@
 #vim the one and only
-export EDITOR=/usr/bin/vim
+export EDITOR=/usr/bin/nvim
 
 # colorful manpages
 export LESS_TERMCAP_mb=$'\E[01;31m'

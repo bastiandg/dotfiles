@@ -44,19 +44,14 @@ alias gc="gcloud"
 alias tm='cd "$(mktemp -d)"'
 alias tree='tree --dirsfirst'
 
+if command -v batcat &> /dev/null ; then
+	alias cat="batcat -pp"
+	alias bat="batcat -pp"
+fi
 
 #colourise
-if [ -e /usr/bin/grc ]
-then
-	alias grc='grc -es'
+if command -v /usr/bin/grc ; then
 	alias ping='grc ping'
-	alias traceroute='grc /usr/sbin/traceroute'
-	alias netstat='grc netstat'
-	alias diffc='grc diff -u'
-	alias make='grc make'
-	function log () {
-		grc cat "$1" | less
-	}
 fi
 
 #use htop instead of top
