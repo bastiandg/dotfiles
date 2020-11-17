@@ -66,3 +66,5 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 "underline the current line
 hi CursorLine cterm=NONE,underline
 let g:pydiction_location="$HOME/.vim/after/ftplugin/python_pydiction.vim"
+au! BufWritePre terragrunt.hcl call terraform#fmt()
+au! BufWritePre *.sh silent call Preserve("%!shfmt -i 2 -ci")
