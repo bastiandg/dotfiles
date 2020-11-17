@@ -26,7 +26,7 @@ alias mkdir='mkdir -p'
 alias df='df -h'
 alias v='nvim'
 alias dusch='du -csh * | sort -rh | head -11' # Lists folders and files sizes in the current folder
-alias abs='readlink -f' #shows the absolute path
+alias abs='readlink -f'                       #shows the absolute path
 alias sx="screen -x"
 alias webserver="python -m SimpleHTTPServer 8080"
 alias cx="chmod +x"
@@ -44,20 +44,17 @@ alias gc="gcloud"
 alias tm='cd "$(mktemp -d)"'
 alias tree='tree --dirsfirst'
 
-if command -v batcat &> /dev/null ; then
-	alias cat="batcat -pp"
-	alias bat="batcat -pp"
+if command -v batcat &>/dev/null; then
+  alias cat="batcat -pp"
+  alias bat="batcat -pp"
 fi
 
 #colourise
-if command -v /usr/bin/grc ; then
-	alias ping='grc ping'
+if command -v grc &>/dev/null; then
+  alias ping='grc ping'
 fi
 
 #use htop instead of top
-if [ -e /usr/bin/htop ]
-then
-	alias top='htop'
+if command -v htop &>/dev/null; then
+  alias top='htop'
 fi
-
-
