@@ -1,5 +1,5 @@
 #vim the one and only
-export EDITOR=/usr/bin/nvim
+export EDITOR=nvim
 
 # colorful manpages
 export LESS_TERMCAP_mb=$'\E[01;31m'
@@ -14,19 +14,19 @@ export NVIM_TUI_ENABLE_TRUE_COLOR='1'
 
 #add my own scripts to the command list
 if [ -d "$HOME/scripts" ]; then
-	export PATH="$HOME/scripts:$PATH"
+  export PATH="$HOME/scripts:$PATH"
 fi
 
-if [ -d "$HOME/go/bin" ] ; then
-	export PATH="$PATH:$HOME/go/bin"
+if [ -d "$HOME/go/bin" ]; then
+  export PATH="$PATH:$HOME/go/bin"
 fi
 
-if [ -d "/usr/local/go/bin/" ] ; then
-	export PATH="$PATH:/usr/local/go/bin/"
+if [ -d "/usr/local/go/bin/" ]; then
+  export PATH="$PATH:/usr/local/go/bin/"
 fi
 
-if [ -d "$HOME/.local/bin" ] ; then
-	export PATH="$PATH:$HOME/.local/bin"
+if [ -d "$HOME/.local/bin" ]; then
+  export PATH="$PATH:$HOME/.local/bin"
 fi
 
 #vim as manpager

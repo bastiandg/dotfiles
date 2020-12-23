@@ -43,6 +43,7 @@ alias text='NVIM_TUI_ENABLE_TRUE_COLOR=0 vim -u ~/.vim/mail.vim +Goyo'
 alias gc="gcloud"
 alias tm='cd "$(mktemp -d)"'
 alias tree='tree --dirsfirst'
+alias editor='nvim'
 
 if command -v batcat &>/dev/null; then
   alias cat="batcat -pp"
