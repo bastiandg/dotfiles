@@ -5,7 +5,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'tpope/vim-sleuth'
 Plug 'luochen1990/rainbow'
-Plug 'vim-syntastic/syntastic'
+"Plug 'vim-syntastic/syntastic'
 Plug 'terryma/vim-expand-region'
 Plug 'vim-scripts/YankRing.vim'
 Plug 'vim-airline/vim-airline'
@@ -23,17 +23,19 @@ Plug 'rodjek/vim-puppet'
 Plug 'plasticboy/vim-markdown'
 Plug 'hashivim/vim-terraform'
 Plug 'juliosueiras/vim-terraform-completion'
-Plug 'fatih/vim-go'
+"Plug 'fatih/vim-go'
 
 " completion
-Plug 'Shougo/deoplete.nvim'
-Plug 'zchee/deoplete-jedi'
-Plug 'Shougo/neco-syntax'
-Plug 'zchee/deoplete-go', { 'do': 'make'}
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/completion-nvim'
+"Plug 'Shougo/deoplete.nvim'
+"Plug 'zchee/deoplete-jedi'
+"Plug 'Shougo/neco-syntax'
+"Plug 'zchee/deoplete-go', { 'do': 'make'}
 
 " colorschemes
-Plug 'junegunn/seoul256.vim'
-Plug 'chriskempson/base16-vim'
+"Plug 'junegunn/seoul256.vim'
+"Plug 'chriskempson/base16-vim'
 
 " git
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -87,8 +89,8 @@ let g:airline_powerline_fonts = 1
 let g:airline_theme='base16_pop'
 
 " deoplete
-let g:deoplete#enable_at_startup = 1
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+"let g:deoplete#enable_at_startup = 1
+"inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 " activate limelight with goyo
 autocmd! User GoyoEnter Limelight

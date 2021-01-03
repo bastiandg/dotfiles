@@ -10,8 +10,9 @@ if exists("+undofile")
 endif
 
 set nocompatible " explicitly get out of vi-compatible mode
-set completeopt=menu
+"set completeopt=menu
 set wildmenu " enhanced command-line completion
+set shortmess+=c
 
 set splitbelow
 set splitright
@@ -65,6 +66,5 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 "
 "underline the current line
 hi CursorLine cterm=NONE,underline
-let g:pydiction_location="$HOME/.vim/after/ftplugin/python_pydiction.vim"
 au! BufWritePre terragrunt.hcl call terraform#fmt()
-au! BufWritePre *.sh silent call Preserve("%!shfmt -i 2 -ci")
+"au! BufWritePre *.sh silent call Preserve("%!shfmt -i 2 -ci")
