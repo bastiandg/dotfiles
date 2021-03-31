@@ -57,7 +57,7 @@ make-completion-wrapper () {
 }
 
 if command -v fdfind  &> /dev/null ; then
-  alias f=fdfind
+  alias f="fdfind --hidden"
 else
   f () {
       find . -iname "*${1}*"

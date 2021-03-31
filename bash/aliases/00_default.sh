@@ -44,6 +44,7 @@ alias gc="gcloud"
 alias tm='cd "$(mktemp -d)"'
 alias tree='tree --dirsfirst'
 alias editor='nvim'
+alias rg='rg -i --no-ignore-vcs'
 
 if command -v batcat &>/dev/null; then
   alias cat="batcat -pp"
