@@ -11,7 +11,7 @@ akc() {
                 echo "No cluster matching the pattern \"$pattern\" was found" >&2
                 return 1
         fi
-        az aks get-credentials --name "$name" --resource-group "$resourceGroup"
+        az aks get-credentials --overwrite-existing --name "$name" --resource-group "$resourceGroup"
 }
 
 # List kubernetes cluster which match a pattern
@@ -41,3 +41,4 @@ ass () {
                 return 1
         fi
 }
+
