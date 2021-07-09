@@ -7,4 +7,5 @@ source ~/.vim/config/preserve.vim
 source ~/.vim/config/spelling.vim
 source ~/.vim/config/mapping.vim
 source ~/.vim/config/option.vim
+source ~/.vim/config/lsp.vim
 
