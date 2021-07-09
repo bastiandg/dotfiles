@@ -12,20 +12,19 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 export LESS=' -iR'
 export NVIM_TUI_ENABLE_TRUE_COLOR='1'
 
-#add my own scripts to the command list
-if [ -d "$HOME/scripts" ]; then
-  export PATH="$HOME/scripts:$PATH"
-fi
-
-if [ -d "$HOME/go/bin" ]; then
+if [[ -d "/opt/appimage" ]]; then
   export PATH="$PATH:$HOME/go/bin"
 fi
 
-if [ -d "/usr/local/go/bin/" ]; then
+if [[ -d "$HOME/go/bin" ]]; then
+  export PATH="$PATH:$HOME/go/bin"
+fi
+
+if [[ -d "/usr/local/go/bin/" ]]; then
   export PATH="$PATH:/usr/local/go/bin/"
 fi
 
-if [ -d "$HOME/.local/bin" ]; then
+if [[ -d "$HOME/.local/bin" ]]; then
   export PATH="$PATH:$HOME/.local/bin"
 fi
 
