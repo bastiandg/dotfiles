@@ -1,6 +1,6 @@
 lua <<EOF
 require'lspconfig'.terraformls.setup{}
-require'lspconfig'.pyls.setup{}
+require'lspconfig'.pylsp.setup{}
 require'lspconfig'.gopls.setup{on_attach=require'completion'.on_attach}
 
 local lspconfig = require('lspconfig')

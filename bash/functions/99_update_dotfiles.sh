@@ -27,7 +27,7 @@ update_dotfiles() {
       ln -s "$HOME/.vim" "$HOME/.config/nvim"
       nvim +PlugInstall +qall
       pip3 install --upgrade neovim
-      pip3 install --upgrade python-language-server black pyls-black
+      pip3 install --upgrade 'python-lsp-server[all]' black python-lsp-black
       if command -v go &>/dev/null; then
         GO111MODULE=on go get golang.org/x/tools/gopls@latest
       fi
