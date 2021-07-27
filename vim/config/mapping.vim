@@ -80,6 +80,10 @@ vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
 nnoremap U <C-r>
 
+
+" disable EX mode
+nnoremap Q <Nop>
+
 :command WQ wq
 :command Wq wq
 :command W w
