@@ -14,6 +14,7 @@ nnoremap <silent> N Nzz
 nnoremap <silent> * *zz
 nnoremap <silent> # #zz
 
+inoremap ° ✓
 nnoremap <CR> G
 nnoremap <BS> gg
 
@@ -39,14 +40,15 @@ nnoremap ; :
 nnoremap j gj
 nnoremap k gk
 
+vmap @sc :'<,'>w !sh -c "pandoc \| xclip -selection c -t text/html"<CR><CR>
 vmap <C-c> "+y
 nmap <C-s> :vsplit<CR>:Rg<CR>
 nmap <C-f> :Rg<CR>
 nmap <C-y> :Files<CR>
 
 "Commenting function with ü
-nnoremap ü :call NERDComment(0, "toggle")<cr>
-vnoremap <silent> ü :call NERDComment(0, "toggle")<cr>
+nnoremap ü :call nerdcommenter#Comment(0, "toggle")<cr>
+vnoremap <silent> ü :call nerdcommenter#Comment(0, "toggle")<cr>
 
 map <C-N> :NERDTreeToggle<CR>
 
