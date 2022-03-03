@@ -1,27 +1,26 @@
-if [ "$(whoami)" == "root" ] ; then
-	ROOT=" - \[\033[01;91m\]root!\[\033[00m\]"
+if [ "$(whoami)" == "root" ]; then
+  ROOT=" - \[\033[01;91m\]root!\[\033[00m\]"
 else
-	ROOT=""
+  ROOT=""
 fi
 
 #SHORTEN PWD
-_PS1 ()
-{
-	ret="$?"
-	local PRE= NAME="$1" LENGTH="$2";
-	[[ "$NAME" != "${NAME#$HOME/}" || -z "${NAME#$HOME}" ]] &&
-	PRE+='~' NAME="${NAME#$HOME}" LENGTH=$[LENGTH-1];
-	((${#NAME}>$LENGTH)) && NAME="/...${NAME:$[${#NAME}-LENGTH+4]}";
-	echo "$PRE$NAME"
-	return $ret #save the returnvalue
+_PS1() {
+  ret="$?"
+  local PRE= NAME="$1" LENGTH="$2"
+  [[ $NAME != "${NAME#$HOME/}" || -z ${NAME#$HOME} ]] &&
+    PRE+='~' NAME="${NAME#$HOME}" LENGTH=$((LENGTH - 1))
+  ((${#NAME} > LENGTH)) && NAME="/...${NAME:$((${#NAME} - LENGTH + 4))}"
+  echo "$PRE$NAME"
+  return $ret #save the returnvalue
 }
 
 FQDN="$(hostname -f)"
 
-if which mawk &> /dev/null ; then
-    AWK=mawk
+if which mawk &>/dev/null; then
+  AWK=mawk
 else
-    AWK=gawk\ --non-decimal-data
+  AWK=gawk\ --non-decimal-data
 fi
 
 COLOR_CODES="$($AWK '
@@ -36,7 +35,7 @@ function lighten (n) {
 }
 
 BEGIN{
-n = "'"$(sha512sum <<< "$FQDN" | cut -d" " -f1)"'"
+n = "'"$(sha512sum <<<"$FQDN" | cut -d" " -f1)"'"
 position = 1
 threshold = 100
 while ((brightness(r1, b1, g1) < threshold || brightness(r2, b2, g2) < threshold) && position < 120) {
@@ -69,7 +68,7 @@ DATE="\e[1m\t \d\[\033[00m\]"
 #Current tty
 TTY="\l"
 #Return code
-RETURN="\$(ret=\$?; if [[ \$ret = 0 ]];then echo \"\[\033[01;32m\]✓\";else echo \"\[\033[01;31m\]\$ret\";fi)\[\033[00m\]"
+RETURN="\$(ret=\$?; if [[ \$ret = 0 ]];then echo \"\[\033[01;32m\]✓\";elif [[ \$ret = 130 ]]; then echo \"✋\"; else echo \"\[\033[01;31m\]\$ret\";fi)\[\033[00m\]"
 
 export GIT_PS1_SHOWCOLORHINTS=1
 
