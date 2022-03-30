@@ -3,8 +3,8 @@
 	pager = delta
 
 [delta]
-	plus-color = "#012800"
-	minus-color = "#340001"
+	plus-style = syntax "#012800"
+	minus-style = normal "#340001"
 	syntax-theme = Monokai Extended
 
 [interactive]
@@ -17,14 +17,16 @@
 	cb = checkout -b
 	c = commit
 	ck = checkout
-	ckm = !git checkout "$(basename "$(git symbolic-ref refs/remotes/origin/HEAD)")"
+	ckm = !git checkout "$(basename "$(git symbolic-ref refs/remotes/origin/HEAD)")" && git pull --prune
+	sm = !git switch "$(basename "$(git symbolic-ref refs/remotes/origin/HEAD)")" && git pull --prune
 	pr = !git diff "$(basename "$(git symbolic-ref refs/remotes/origin/HEAD)")...$(git rev-parse --abbrev-ref HEAD)"
+	rmf = !git switch "$(basename "$(git symbolic-ref refs/remotes/origin/HEAD)")" && git pull && git reset --hard && git clean -d -x -f
+	mm = !defaultbranch="$(basename "$(git symbolic-ref refs/remotes/origin/HEAD)")" git pull origin "$defaultbranch:$defaultbranch"
 	dd = diff
 	ds = diff --staged
 	d = diff --stat
 	d1 = diff HEAD~
 	d2 = diff HEAD~2
-	;l = log --color
 	m = merge
 	ps = push
 	pu = pull
@@ -35,3 +37,4 @@
 	rebase = false
 [color]
 	ui = auto
+
