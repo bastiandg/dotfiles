@@ -15,7 +15,7 @@ _PS1() {
   return $ret #save the returnvalue
 }
 
-FQDN="$(hostname -f)"
+HOSTNAME="$(timeout "0.5" hostname -f 2> /dev/null || hostname)"
 
 if which mawk &>/dev/null; then
   AWK=mawk
@@ -35,7 +35,7 @@ function lighten (n) {
 }
 
 BEGIN{
-n = "'"$(sha512sum <<<"$FQDN" | cut -d" " -f1)"'"
+n = "'"$(sha512sum <<<"$HOSTNAME" | cut -d" " -f1)"'"
 position = 1
 threshold = 100
 while ((brightness(r1, b1, g1) < threshold || brightness(r2, b2, g2) < threshold) && position < 120) {
@@ -59,7 +59,7 @@ COLOR_ARRAY=(${COLOR_CODES//\n/ })
 U="\[\033[38;2;${COLOR_ARRAY[0]}m\]\u\[\033[00m\]"
 
 #Host
-H="\[\033[38;2;${COLOR_ARRAY[1]}m\]$(hostname -f)\[\033[00m\]"
+H="\[\033[38;2;${COLOR_ARRAY[1]}m\]${HOSTNAME}\[\033[00m\]"
 
 #Directory
 DIR="\[\033[01;34m\]"'$(_PS1 "$PWD" 50)'"\[\033[00m\]"
