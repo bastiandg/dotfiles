@@ -57,7 +57,7 @@ autocmd BufReadPost *
 			\   exe "normal! g`\"" |
 			\ endif
 
-silent! colorscheme base16-hardcore
+silent! colorscheme base16-pop
 hi Normal ctermbg=Black ctermfg=White guifg=White guibg=Black
 hi Search guibg=black guifg=White gui=underline
 set guifont=Source\ Code\ Pro\ 14
@@ -67,4 +67,4 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 "underline the current line
 hi CursorLine cterm=NONE,underline
 au! BufWritePre terragrunt.hcl call terraform#fmt()
-"au! BufWritePre *.sh silent call Preserve("%!shfmt -i 2 -ci")
+au BufNewFile,BufRead Jenkinsfile setf groovy

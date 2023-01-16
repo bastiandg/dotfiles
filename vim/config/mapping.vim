@@ -67,7 +67,7 @@ set pastetoggle=<F2>
 nnoremap <silent> <F3> :YRShow<cr>
 inoremap <silent> <F3> <ESC>:YRShow<cr>
 "tail -f like action
-nmap <F4> :e<CR>GL:sleep 1<CR><F4>
+nmap <F4> :r!date "+\%d.\%m.\%Y"<CR>kJ
 nmap <F5> :call Preserve("%s/\\s\\+$//e")<CR>
 nmap <F6> :call Preserve("normal gg=G")<CR>
 map <F7> :call MySpellLang()<CR>

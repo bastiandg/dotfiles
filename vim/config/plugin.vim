@@ -22,7 +22,7 @@ Plug 'hashivim/vim-vagrant'
 Plug 'rodjek/vim-puppet'
 Plug 'plasticboy/vim-markdown'
 Plug 'hashivim/vim-terraform'
-Plug 'juliosueiras/vim-terraform-completion'
+"Plug 'juliosueiras/vim-terraform-completion'
 "Plug 'fatih/vim-go'
 
 " completion
@@ -35,7 +35,7 @@ Plug 'nvim-lua/completion-nvim'
 
 " colorschemes
 "Plug 'junegunn/seoul256.vim'
-"Plug 'chriskempson/base16-vim'
+Plug 'chriskempson/base16-vim'
 
 " git
 Plug 'Xuyuanp/nerdtree-git-plugin'
