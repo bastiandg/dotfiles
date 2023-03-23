@@ -23,6 +23,30 @@ else
   AWK=gawk\ --non-decimal-data
 fi
 
+__kube_ps1()
+{
+  ret="$?"
+  # Get current context
+  CONTEXT=$(grep "current-context:" ~/.kube/config | sed "s/current-context: //")
+  GREEN='\033[0;32m'
+  YELLOW='\033[1;33m'
+  RED='\033[1;31m'
+  COLOR_OFF='\033[0m'
+
+  if [[ -z "$CONTEXT" ]]; then
+    return "$ret" #save the returnvalue
+  fi
+  if grep -q 'prd\|prod\|live' <<< "$CONTEXT"; then
+    CONTEXT_COLOR="$RED"
+  elif grep -q "qua\|qa\|test" <<< "$CONTEXT"; then
+    CONTEXT_COLOR="$YELLOW"
+  else
+    CONTEXT_COLOR="$GREEN"
+  fi
+  echo -e "(k8s: ${CONTEXT_COLOR}${CONTEXT}${COLOR_OFF})"
+  return "$ret" #save the returnvalue
+}
+
 COLOR_CODES="$($AWK '
 
 function brightness (r, g, b)
@@ -69,8 +93,11 @@ DATE="\e[1m\t \d\[\033[00m\]"
 TTY="\l"
 #Return code
 RETURN="\$(ret=\$?; if [[ \$ret = 0 ]];then echo \"\[\033[01;32m\]✓\";elif [[ \$ret = 130 ]]; then echo \"✋\"; else echo \"\[\033[01;31m\]\$ret\";fi)\[\033[00m\]"
+#kubectl context
+#KUBECONTEXT='$(__kube_ps1)'
+KUBECONTEXT=''
 
 export GIT_PS1_SHOWCOLORHINTS=1
 
 #Write out history after each command
-export PROMPT_COMMAND='__git_ps1 "$DATE - $DIR$ROOT" "\n$U@$H $RETURN \$ "; history -a'
+export PROMPT_COMMAND='__git_ps1 "${DATE} - ${KUBECONTEXT} ${DIR}${ROOT}" "\n${U}@${H} ${RETURN} \$ "; history -a'
