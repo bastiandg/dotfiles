@@ -44,5 +44,6 @@ bind 'set input-meta on'
 bind 'set output-meta on'
 bind 'set convert-meta off'
 bind 'set completion-ignore-case on'
+bind '"\C-p": shell-kill-word'
 
 export LANG=en_US.UTF-8
