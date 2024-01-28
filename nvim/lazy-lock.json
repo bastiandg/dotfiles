@@ -1,0 +1,13 @@
+{
+  "YankRing.vim": { "branch": "master", "commit": "28854abef8fa4ebd3cb219aefcf22566997d8f65" },
+  "indent-blankline.nvim": { "branch": "master", "commit": "12e92044d313c54c438bd786d11684c88f6f78cd" },
+  "lazy.nvim": { "branch": "main", "commit": "aedcd79811d491b60d0a6577a9c1701063c2a609" },
+  "lualine.nvim": { "branch": "master", "commit": "7d131a8d3ba5016229e8a1d08bf8782acea98852" },
+  "nerdcommenter": { "branch": "master", "commit": "e361a44230860d616f799a337bc58f5218ab6e9c" },
+  "nvim-base16": { "branch": "master", "commit": "36dd46bfa8e3765d74d1c47f03c3284a144cb4a7" },
+  "nvim-treesitter": { "branch": "master", "commit": "6f586875e35e2b02358efa467317634c766fd1d4" },
+  "nvim-web-devicons": { "branch": "master", "commit": "b427ac5f9dff494f839e81441fb3f04a58cbcfbc" },
+  "rainbow-delimiters.nvim": { "branch": "master", "commit": "8908741c5039fd337594448c0088459450277aef" },
+  "vim-markdown": { "branch": "master", "commit": "46add6c3017d3e4035dc10ffa9cb54221d8dfe1a" },
+  "vim-sleuth": { "branch": "master", "commit": "1cc4557420f215d02c4d2645a748a816c220e99b" }
+}
