@@ -5,7 +5,6 @@ return {
   },
   config = function()
     local mason = require("mason")
-    --local mason_lspconfig = require("mason-lspconfig")
     mason.setup({
       ui = {
         icons = {
@@ -16,6 +15,7 @@ return {
       },
     })
 
+    --local mason_lspconfig = require("mason-lspconfig")
     --mason_lspconfig.setup({
       ---- list of servers for mason to install
       --ensure_installed = {

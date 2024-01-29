@@ -21,7 +21,7 @@ return {
         --['<C-Space>'] = cmp.mapping.select_next_item(), -- Tab to go to the next suggestion
       }),
       sources = cmp.config.sources({
-        --{ name = "nvim_lsp" },
+        { name = "nvim_lsp" },
         { name = "buffer" }, -- text within current buffer
         { name = "path" }, -- file system paths
       }),
