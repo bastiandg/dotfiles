@@ -5,7 +5,7 @@ return {
   },
   config = function()
     local mason = require("mason")
-    local mason_lspconfig = require("mason-lspconfig")
+    --local mason_lspconfig = require("mason-lspconfig")
     mason.setup({
       ui = {
         icons = {
@@ -16,14 +16,14 @@ return {
       },
     })
 
-    mason_lspconfig.setup({
-      -- list of servers for mason to install
-      ensure_installed = {
-        "pylsp",
-        "lua_ls"
-      },
-      -- auto-install configured servers (with lspconfig)
-      automatic_installation = true, -- not the same as ensure_installed
-    })
+    --mason_lspconfig.setup({
+      ---- list of servers for mason to install
+      --ensure_installed = {
+        --"pylsp",
+        --"lua_ls"
+      --},
+      ---- auto-install configured servers (with lspconfig)
+      --automatic_installation = true, -- not the same as ensure_installed
+    --})
   end,
 }
