@@ -15,6 +15,15 @@ return {
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
     end
 
+    local keymap = vim.keymap
+    local opts = { noremap = true, silent = true }
+    local on_attach = function(bufnr)
+      opts.buffer = bufnr
+      opts.desc = "Smart rename"
+      keymap.set("n", "<leader>r", vim.lsp.buf.rename, opts)
+    end
+
+
     lspconfig["pylsp"].setup({
       capabilities = capabilities,
       on_attach = on_attach,
