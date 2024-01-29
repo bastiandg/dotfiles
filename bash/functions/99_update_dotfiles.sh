@@ -22,16 +22,9 @@ update_dotfiles() {
     fi
     if command -v nvim &>/dev/null; then
       rm -rf "$HOME/.vim/" "$HOME/.vimrc" "$HOME/.config/nvim"
-      ln -s "$HOME/.vim/init.vim" "$HOME/.vimrc"
-      cp -r "$HOME/dotfiles/vim" "$HOME/.vim"
-      ln -s "$HOME/.vim" "$HOME/.config/nvim"
-      nvim +PlugInstall +qall
-      pip3 install --upgrade neovim
-      pip3 install --upgrade 'python-lsp-server[all]' black python-lsp-black
-      if command -v go &>/dev/null; then
-        GO111MODULE=on go get golang.org/x/tools/gopls@latest
-      fi
-      nvim +UpdateRemotePlugins +qall
+      cp -r "$HOME/dotfiles/nvim" "$HOME/.config/nvim"
+      vim +q +qall
+      vim --headless -c "MasonInstall python-lsp-server lua-language-server" -c qall
     fi
   else
     echo "git is not installed"
