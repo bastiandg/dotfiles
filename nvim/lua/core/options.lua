@@ -38,4 +38,6 @@ opt.list = true             -- list nonprintable characters
 opt.listchars = "tab:» ,trail: ,precedes:»,extends:…,eol:¬,nbsp:␣"
 
 opt.cursorline = true
-vim.o.scrolloff = 999
+vim.o.scrolloff = 999       -- center cursor
+
+vim.cmd("colorscheme base16-hardcore")

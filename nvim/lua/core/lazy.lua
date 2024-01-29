@@ -17,4 +17,12 @@ if not status_ok then
   return
 end
 
-require("lazy").setup("plugins")
+require("lazy").setup({{ import = "plugins" }, { import = "plugins/lsp" }}, {
+  checker = {
+    enabled = true,
+    notify = false,
+  },
+  change_detection = {
+    notify = false,
+  },
+})
