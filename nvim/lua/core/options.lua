@@ -33,6 +33,7 @@ opt.smartindent = true      -- Autoindent new lines
 
 opt.autoindent = true       -- always set autoindenting on
 opt.copyindent = true       -- always set copyindenting on
+opt.breakindent = true       -- always set copyindenting on
 
 opt.list = true             -- list nonprintable characters
 opt.listchars = "tab:» ,trail: ,precedes:»,extends:…,eol:¬,nbsp:␣"
