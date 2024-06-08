@@ -1,6 +1,6 @@
 # aliases
 alias vim=nvim
-alias todo='vim -o ~/todo.md ~/notizen.md "+windo set nonumber" "+windo set nolist" "+windo set fcs=eob:\ " "+SyntasticToggleMode"'
+alias todo='vim -o ~/todo.md ~/notizen.md "+windo set nonumber" "+windo set nolist" "+windo set fcs=eob:\ "'
 alias watch='watch '
 alias ls='ls -F -h --color=auto'
 alias ll='ls -lN'
@@ -45,6 +45,7 @@ alias tm='cd "$(mktemp -d)"'
 alias tree='tree --dirsfirst'
 alias editor='nvim'
 alias rg='rg -i --no-ignore-vcs'
+alias t='tree -L 2 -C'
 
 if command -v batcat &>/dev/null; then
   alias cat="batcat -pp"
