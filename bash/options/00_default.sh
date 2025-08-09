@@ -12,21 +12,22 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 export LESS=' -iR'
 export NVIM_TUI_ENABLE_TRUE_COLOR='1'
 
-if [[ -d "/opt/appimage" ]]; then
-  export PATH="$PATH:$HOME/go/bin"
+paths=(
+  "${HOME}/go/bin"
+  "${HOME}/.local/go/bin/"
+  "/usr/local/go/bin/"
+  "${HOME}/.local/bin"
+)
+
+if command -v npm &>/dev/null; then
+  paths+=("$(npm config get prefix)/bin")
 fi
 
-if [[ -d "$HOME/go/bin" ]]; then
-  export PATH="$PATH:$HOME/go/bin"
-fi
-
-if [[ -d "/usr/local/go/bin/" ]]; then
-  export PATH="$PATH:/usr/local/go/bin/"
-fi
-
-if [[ -d "$HOME/.local/bin" ]]; then
-  export PATH="$PATH:$HOME/.local/bin"
-fi
+for path in "${paths[@]}"; do
+  if [[ -d "$path" ]]; then
+    export PATH="${PATH}:${path}"
+  fi
+done
 
 #vim as manpager
 export MANPAGER="/bin/sh -c \"col -b | nvim -c 'set ft=man ts=8 nomod nolist nonu noma' -c 'map q :q<CR>' -\""
