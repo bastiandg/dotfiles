@@ -14,17 +14,9 @@ update_dotfiles() {
     cp -r "$HOME/dotfiles/bashrc" "$HOME/.bashrc"
     rm -rf "$HOME/.bash"
     cp -r "$HOME/dotfiles/bash" "$HOME/.bash"
-    if command -v helm &>/dev/null; then
-      helm completion bash >"$HOME/.bash/completions/helm.sh"
-    fi
-    if command -v kubectl &>/dev/null; then
-      kubectl completion bash >"$HOME/.bash/completions/kubectl.sh"
-    fi
     if command -v nvim &>/dev/null; then
       rm -rf "$HOME/.vim/" "$HOME/.vimrc" "$HOME/.config/nvim"
-      cp -r "$HOME/dotfiles/nvim" "$HOME/.config/nvim"
-      vim +q +qall
-      vim --headless -c "MasonInstall python-lsp-server lua-language-server" -c qall
+      cp -r "$HOME/dotfiles/lazyvim" "$HOME/.config/nvim"
     fi
   else
     echo "git is not installed"
