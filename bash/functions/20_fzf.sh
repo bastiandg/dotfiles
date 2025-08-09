@@ -14,4 +14,6 @@ fi
 
 # Key bindings
 # ------------
-source "${HOME}/.fzf/shell/key-bindings.bash"
+if [[ -f "${HOME}/.fzf/shell/key-bindings.bash" ]]; then
+  source "${HOME}/.fzf/shell/key-bindings.bash"
+fi
