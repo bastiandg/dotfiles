@@ -5,7 +5,7 @@ local config = wezterm.config_builder()
 config.font_size = 20
 config.font = wezterm.font("SauceCodePro Nerd Font", { weight = "Medium" })
 
-config.color_scheme = "Hardcore"
+config.color_scheme = "Argonaut"
 
 config.colors = {
 	foreground = "White",
@@ -24,12 +24,16 @@ config.window_padding = {
 	bottom = 0,
 }
 
+local act = wezterm.action
+
 config.keys = {
-	{ key = "LeftArrow", mods = "SHIFT", action = wezterm.action.ActivateTabRelative(-1) },
-	{ key = "RightArrow", mods = "SHIFT", action = wezterm.action.ActivateTabRelative(1) },
-	{ key = "RightArrow", mods = "CTRL|SHIFT", action = wezterm.action.MoveTabRelative(1) },
-	{ key = "LeftArrow", mods = "CTRL|SHIFT", action = wezterm.action.MoveTabRelative(-1) },
-	{ key = "n", mods = "CTRL|SHIFT", action = wezterm.action.SpawnTab("CurrentPaneDomain") },
+	{ key = "LeftArrow", mods = "SHIFT", action = act.ActivateTabRelative(-1) },
+	{ key = "RightArrow", mods = "SHIFT", action = act.ActivateTabRelative(1) },
+	{ key = "RightArrow", mods = "CTRL|SHIFT", action = act.MoveTabRelative(1) },
+	{ key = "LeftArrow", mods = "CTRL|SHIFT", action = act.MoveTabRelative(-1) },
+	{ key = "n", mods = "CTRL|SHIFT", action = act({ SpawnCommandInNewTab = { cwd = wezterm.home_dir } }) },
+	{ key = "UpArrow", mods = "SHIFT", action = act.ScrollByLine(-1) },
+	{ key = "DownArrow", mods = "SHIFT", action = act.ScrollByLine(1) },
 }
 
 return config
