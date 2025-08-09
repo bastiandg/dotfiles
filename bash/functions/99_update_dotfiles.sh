@@ -14,6 +14,8 @@ update_dotfiles() {
     cp -r "$HOME/dotfiles/bashrc" "$HOME/.bashrc"
     rm -rf "$HOME/.bash"
     cp -r "$HOME/dotfiles/bash" "$HOME/.bash"
+    rm -rf "$HOME/.config/wezterm"
+    cp -r "$HOME/dotfiles/wezterm/" "$HOME/.config/wezterm"
     if command -v nvim &>/dev/null; then
       rm -rf "$HOME/.vim/" "$HOME/.vimrc" "$HOME/.config/nvim"
       cp -r "$HOME/dotfiles/lazyvim" "$HOME/.config/nvim"
