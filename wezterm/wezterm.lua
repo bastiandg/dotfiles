@@ -26,6 +26,18 @@ config.window_padding = {
 
 local act = wezterm.action
 
+local function current_cmd(pane)
+	local info = pane:get_foreground_process_info() or {}
+	local argv = info.argv or {}
+	for _, arg in ipairs(argv) do
+		local cmd = arg:match("([^/\\]+)$") -- strip path
+		if cmd == "gemini" or cmd == "claude" then
+			return cmd
+		end
+	end
+	return nil
+end
+
 config.keys = {
 	{ key = "LeftArrow", mods = "SHIFT", action = act.ActivateTabRelative(-1) },
 	{ key = "RightArrow", mods = "SHIFT", action = act.ActivateTabRelative(1) },
@@ -34,6 +46,18 @@ config.keys = {
 	{ key = "n", mods = "CTRL|SHIFT", action = act({ SpawnCommandInNewTab = { cwd = wezterm.home_dir } }) },
 	{ key = "UpArrow", mods = "SHIFT", action = act.ScrollByLine(-1) },
 	{ key = "DownArrow", mods = "SHIFT", action = act.ScrollByLine(1) },
+	{
+		key = "Enter",
+		mods = "SHIFT",
+		action = wezterm.action_callback(function(window, pane)
+			local cmd = current_cmd(pane)
+			if cmd == "claude" or cmd == "gemini" then
+				window:perform_action(act.SendString("\n"), pane)
+			else
+				window:perform_action(act.SendKey({ key = "Enter" }), pane)
+			end
+		end),
+	},
 }
 
 return config
