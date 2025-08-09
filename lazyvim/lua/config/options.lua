@@ -4,4 +4,8 @@
 --
 local opt = vim.opt
 opt.relativenumber = false
+opt.relativenumber = false
+opt.mouse = ""
+opt.clipboard = ""
+
 vim.g.snacks_scroll = false
