@@ -17,6 +17,7 @@ paths=(
   "${HOME}/.local/go/bin/"
   "/usr/local/go/bin/"
   "${HOME}/.local/bin"
+  "${HOME}/.cargo/bin"
 )
 
 if command -v npm &>/dev/null; then
