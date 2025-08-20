@@ -11,6 +11,7 @@ local function map(mode, lhs, rhs, opts)
 end
 
 map("", "<F10>", "^r✓ddGp<C-o>")
+map("n", "<F4>", 'dd:r!date "+\\#\\# \\%d.\\%m.\\%Y"<CR>A<CR><CR>')
 map("n", "<Tab>", ">>")
 map("n", "<S-Tab>", "<<")
 map("v", "<Tab>", ">gv")
