@@ -2,6 +2,9 @@
 	editor = nvim
 	pager = delta
 
+[push]
+    autoSetupRemote = true
+
 [delta]
 	plus-style = syntax "#012800"
 	minus-style = normal "#340001"
@@ -12,27 +15,28 @@
 
 [alias]
 	a = add
-	b = !git --no-pager branch
 	ba = !git --no-pager branch -a
+	b = !git --no-pager branch
 	cb = checkout -b
 	c = commit
 	ck = checkout
 	ckm = !git checkout "$(basename "$(git symbolic-ref refs/remotes/origin/HEAD)")" && git pull --prune
-	sm = !git switch "$(basename "$(git symbolic-ref refs/remotes/origin/HEAD)")" && git pull --prune
-	pr = !git diff "$(basename "$(git symbolic-ref refs/remotes/origin/HEAD)")...$(git rev-parse --abbrev-ref HEAD)"
-	rmf = !git switch "$(basename "$(git symbolic-ref refs/remotes/origin/HEAD)")" && git pull && git reset --hard && git clean -d -x -f
-	mm = !defaultbranch="$(basename "$(git symbolic-ref refs/remotes/origin/HEAD)")" git pull origin "$defaultbranch:$defaultbranch"
-	dd = diff
-	ds = diff --staged
-	d = diff --stat
 	d1 = diff HEAD~
 	d2 = diff HEAD~2
+	dd = diff
+	d = diff --stat
+	ds = diff --staged
+	l = log --graph --abbrev-commit --decorate --date=local --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ad) %C(white) %s - %C(bold blue)%an %C(reset)%C(bold yellow)%d%C(reset)' --all
+	mm = !defaultbranch="$(basename "$(git symbolic-ref refs/remotes/origin/HEAD)")" git pull origin "$defaultbranch:$defaultbranch"
 	m = merge
+	pr = !git diff "$(basename "$(git symbolic-ref refs/remotes/origin/HEAD)")...$(git rev-parse --abbrev-ref HEAD)"
 	ps = push
 	pu = pull
+	rmf = !git switch "$(basename "$(git symbolic-ref refs/remotes/origin/HEAD)")" && git pull && git reset --hard && git clean -d -x -f
+  sc = switch --create
+	sm = !git switch "$(basename "$(git symbolic-ref refs/remotes/origin/HEAD)")" && git pull --prune
 	ss = status
 	s = status -s
-	l = log --graph --abbrev-commit --decorate --date=local --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ad) %C(white) %s - %C(bold blue)%an %C(reset)%C(bold yellow)%d%C(reset)' --all
 [pull]
 	rebase = false
 [color]
