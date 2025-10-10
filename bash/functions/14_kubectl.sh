@@ -1,7 +1,3 @@
-if [[ -n "$(command -v kubectl 2>/dev/null)" ]]; then
-  source <(kubectl completion bash)
-fi
-
 alias k="kubectl"
 alias kg="kubectl get"
 alias kd="kubectl describe"
@@ -9,7 +5,6 @@ alias kd="kubectl describe"
 complete -F _complete_alias k
 complete -F _complete_alias kg
 complete -F _complete_alias kd
-
 
 pl() {
   if [ -z "$1" ]; then

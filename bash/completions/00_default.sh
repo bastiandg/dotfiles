@@ -1,7 +1,10 @@
-if [ -n "$(which vault)" ] ; then
-   complete -C /usr/bin/vault vault
+if command -v tofu &>/dev/null; then
+  complete -C /usr/bin/tofu tofu
 fi
 
-if [ -n "$(which terraform)" ] ; then
-   complete -C /usr/bin/terraform terraform
-fi
+COMPLETION_COMMANDS=(helm helmfile k3d kubectl)
+for cmd in "${COMPLETION_COMMANDS[@]}"; do
+  if command -v "$cmd" &>/dev/null; then
+    source <("$cmd" completion bash)
+  fi
+done
