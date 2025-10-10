@@ -38,7 +38,6 @@ alias ce='crontab -e'
 alias pycalc="python -i -c \"from math import *; import readline; import rlcompleter; readline.parse_and_bind('tab: complete')\""
 alias gu='git pull && git submodule update --init --recursive'
 alias g1="git diff HEAD~1"
-alias -- -='cd -'
 alias text='NVIM_TUI_ENABLE_TRUE_COLOR=0 vim -u ~/.vim/mail.vim +Goyo'
 alias gc="gcloud"
 alias tm='cd "$(mktemp -d)"'
@@ -46,6 +45,10 @@ alias tree='tree --dirsfirst'
 alias editor='nvim'
 alias rg='rg -i --no-ignore-vcs'
 alias t='tree -L 2 -C'
+
+if [[ -z "$CLAUDECODE" ]]; then
+  alias -- -='cd -'
+fi
 
 if command -v batcat &>/dev/null; then
   alias cat="batcat -pp"

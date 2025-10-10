@@ -37,15 +37,17 @@ export MANPAGER="/bin/sh -c \"col -b | nvim -c 'set ft=man ts=8 nomod nolist non
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# history search with the arrow keys
-bind '"\e[A": history-search-backward'
-bind '"\e[B": history-search-forward'
-bind '"\eOC":forward-word'
-bind '"\eOD":backward-word'
-bind 'set input-meta on'
-bind 'set output-meta on'
-bind 'set convert-meta off'
-bind 'set completion-ignore-case on'
-bind '"\C-p": shell-kill-word'
+if [[ -z "$CLAUDECODE" ]]; then
+  # history search with the arrow keys
+  bind '"\e[A": history-search-backward'
+  bind '"\e[B": history-search-forward'
+  bind '"\eOC":forward-word'
+  bind '"\eOD":backward-word'
+  bind 'set input-meta on'
+  bind 'set output-meta on'
+  bind 'set convert-meta off'
+  bind 'set completion-ignore-case on'
+  bind '"\C-p": shell-kill-word'
+fi
 
 export LANG=en_US.UTF-8
