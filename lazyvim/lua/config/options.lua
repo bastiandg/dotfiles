@@ -8,5 +8,6 @@ opt.relativenumber = false
 opt.mouse = ""
 opt.clipboard = ""
 opt.wrap = true
+opt.conceallevel = 0
 
 vim.g.snacks_scroll = false
